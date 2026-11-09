@@ -1,0 +1,1381 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>EuWatt Technologies</title>
+  <meta name="description" content="EuWatt Technologies: certified Energy Audits, Water Audits and GHG Carbon Footprint Verification for manufacturing plants, textile mills and commercial facilities across Tamil Nadu." />
+  <meta name="theme-color" content="#0F172A" />
+  <meta property="og:title" content="EuWatt Technologies | Industrial Energy, Water & GHG Audits in Tamil Nadu" />
+  <meta property="og:description" content="Reduce industrial power and water costs by up to 25% with certified engineering audits." />
+  <meta property="og:type" content="website" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230F172A'/%3E%3Cpath d='M18 4 8 18h7l-2 10 11-15h-7z' fill='%2310B981'/%3E%3C/svg%3E" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet" />
+
+  <script src="https://cdn.tailwindcss.com/3.4.16"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'Inter', 'system-ui', 'sans-serif'],
+            mono: ['"JetBrains Mono"', 'ui-monospace', 'monospace']
+          },
+          colors: {
+            navy: { 950: '#0B1120', 900: '#0F172A', 800: '#1E293B', 700: '#334155' },
+            emerald: { 400: '#34D399', 500: '#10B981', 600: '#059669', 700: '#047857' },
+            teal: { 500: '#06B6D4', 600: '#0891B2', 700: '#0E7490' }
+          },
+          boxShadow: {
+            card: '0 1px 2px rgba(15,23,42,.04), 0 8px 24px -12px rgba(15,23,42,.12)',
+            lift: '0 2px 4px rgba(15,23,42,.06), 0 24px 48px -20px rgba(15,23,42,.28)'
+          }
+        }
+      }
+    };
+  </script>
+
+  <style>
+    :root {
+      --navy: #0F172A;
+      --emerald: #10B981;
+      --emerald-deep: #059669;
+      --cyan: #0891B2;
+      --page-bg: #F8FAFC;
+    }
+    html { -webkit-text-size-adjust: 100%; }
+    body { background: var(--page-bg); color: var(--navy); font-family: "Plus Jakarta Sans", Inter, system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
+    section[id] { scroll-margin-top: 84px; }
+
+    .grid-bg {
+      background-image:
+        linear-gradient(rgba(148,163,184,.08) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(148,163,184,.08) 1px, transparent 1px);
+      background-size: 44px 44px;
+    }
+    .grid-bg-light {
+      background-image:
+        linear-gradient(rgba(15,23,42,.045) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(15,23,42,.045) 1px, transparent 1px);
+      background-size: 36px 36px;
+    }
+
+    /* WhatsApp pulse */
+    @keyframes wa-pulse {
+      0% { transform: scale(1); opacity: .55; }
+      80%, 100% { transform: scale(1.75); opacity: 0; }
+    }
+    .wa-pulse::before, .wa-pulse::after {
+      content: ""; position: absolute; inset: 0; border-radius: 9999px; background: #25D366; z-index: -1;
+      animation: wa-pulse 2.4s cubic-bezier(.2,.6,.3,1) infinite;
+    }
+    .wa-pulse::after { animation-delay: 1.2s; }
+
+    /* Live waveform in hero panel */
+    @keyframes dash { to { stroke-dashoffset: -400; } }
+    .wave-line { stroke-dasharray: 6 6; animation: dash 18s linear infinite; }
+    @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: .25; } }
+    .live-dot { animation: blink 1.6s ease-in-out infinite; }
+
+    /* Range slider */
+    input[type=range].euw-range { -webkit-appearance: none; appearance: none; width: 100%; height: 8px; border-radius: 9999px; background: linear-gradient(90deg, #059669 0%, #10B981 var(--fill, 20%), #E2E8F0 var(--fill, 20%)); outline: none; }
+    input[type=range].euw-range::-webkit-slider-thumb { -webkit-appearance: none; appearance: none; width: 26px; height: 26px; border-radius: 9999px; background: #fff; border: 3px solid #059669; box-shadow: 0 4px 12px rgba(5,150,105,.35); cursor: pointer; transition: transform .15s; }
+    input[type=range].euw-range::-webkit-slider-thumb:hover { transform: scale(1.1); }
+    input[type=range].euw-range::-moz-range-thumb { width: 22px; height: 22px; border-radius: 9999px; background: #fff; border: 3px solid #059669; box-shadow: 0 4px 12px rgba(5,150,105,.35); cursor: pointer; }
+    input[type=range].euw-range:focus-visible::-webkit-slider-thumb { outline: 3px solid rgba(16,185,129,.4); outline-offset: 2px; }
+
+    /* Reveal on scroll */
+    .reveal { opacity: 0; transform: translateY(18px); transition: opacity .7s ease, transform .7s ease; }
+    .reveal.is-visible { opacity: 1; transform: none; }
+    @media (prefers-reduced-motion: reduce) {
+      .reveal { opacity: 1; transform: none; transition: none; }
+      .wa-pulse::before, .wa-pulse::after, .wave-line, .live-dot { animation: none; }
+      html { scroll-behavior: auto; }
+    }
+
+    /* Industry chip radios */
+    .ind-chip input:checked + span { background: #0F172A; color: #fff; border-color: #0F172A; box-shadow: 0 6px 16px -8px rgba(15,23,42,.6); }
+    .ind-chip input:checked + span svg { color: #34D399; }
+    .ind-chip input:focus-visible + span { outline: 3px solid rgba(16,185,129,.45); outline-offset: 2px; }
+
+    /* Service checkboxes */
+    .svc-check input:checked + span { border-color: #059669; background: #ECFDF5; }
+    .svc-check input:checked + span .tick { background: #059669; border-color: #059669; }
+    .svc-check input:checked + span .tick svg { opacity: 1; }
+    .svc-check input:focus-visible + span { outline: 3px solid rgba(16,185,129,.45); outline-offset: 2px; }
+
+    .num { font-variant-numeric: tabular-nums; }
+    .modal-open { overflow: hidden; }
+  </style>
+</head>
+
+<body class="antialiased">
+
+  <!-- ============ TOP UTILITY BAR ============ -->
+  <div class="hidden md:block bg-navy-950 text-slate-400 text-xs">
+    <div class="max-w-7xl mx-auto px-6 h-9 flex items-center justify-between">
+      <div class="flex items-center gap-6">
+        <span class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>Serving Chennai · Coimbatore · Tirupur · Hosur · Salem · Erode · Perambalur</span>
+      </div>
+      <div class="flex items-center gap-6">
+        <a href="tel:+91XXXXXXXXXX" class="hover:text-white transition-colors">+91 XXXXX XXXXX</a>
+        <a href="mailto:audits@euwatt.in" class="hover:text-white transition-colors">audits@euwatt.in</a>
+        <span>Mon–Sat · 9:00 AM – 6:30 PM IST</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ 1. STICKY HEADER ============ -->
+  <header id="siteHeader" class="sticky top-0 z-40 bg-white/90 backdrop-blur-md border-b border-slate-200 transition-shadow">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 h-[68px] flex items-center justify-between gap-4">
+      <a href="#top" class="flex items-center gap-2.5 shrink-0" aria-label="EuWatt Technologies home">
+        <span class="relative grid place-items-center w-10 h-10 rounded-xl bg-navy-900 shadow-card">
+          <svg viewBox="0 0 32 32" class="w-6 h-6" aria-hidden="true">
+            <path d="M8 24c0-8 6-14 16-15-1 10-7 16-15 16" fill="none" stroke="#0891B2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M18 5 10 17h6l-2 10 9-13h-6z" fill="#10B981"/>
+          </svg>
+        </span>
+        <span class="leading-none">
+          <span class="block text-[19px] font-extrabold tracking-tight text-navy-900">Eu<span class="text-emerald-600">Watt</span></span>
+          <span class="block text-[10px] font-semibold tracking-[0.22em] uppercase text-slate-500 mt-1">Technologies</span>
+        </span>
+      </a>
+
+      <nav class="hidden lg:flex items-center gap-1 text-[14.5px] font-semibold text-slate-600" aria-label="Primary">
+        <a href="#services" class="nav-link px-3.5 py-2 rounded-lg hover:text-navy-900 hover:bg-slate-100 transition-colors">Services</a>
+        <a href="#methodology" class="nav-link px-3.5 py-2 rounded-lg hover:text-navy-900 hover:bg-slate-100 transition-colors">Audit Methodology</a>
+        <a href="#industries" class="nav-link px-3.5 py-2 rounded-lg hover:text-navy-900 hover:bg-slate-100 transition-colors">Industries</a>
+        <a href="#calculator" class="nav-link px-3.5 py-2 rounded-lg hover:text-navy-900 hover:bg-slate-100 transition-colors">Savings Calculator</a>
+        <a href="#contact" class="nav-link px-3.5 py-2 rounded-lg hover:text-navy-900 hover:bg-slate-100 transition-colors">Contact</a>
+      </nav>
+
+      <div class="flex items-center gap-2">
+        <a href="#rfq" class="hidden sm:inline-flex items-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-bold px-5 py-2.5 rounded-lg shadow-[0_8px_20px_-8px_rgba(5,150,105,.7)] transition-colors">
+          Request Audit RFQ
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+        <button id="menuBtn" class="lg:hidden grid place-items-center w-10 h-10 rounded-lg border border-slate-200 text-navy-900 hover:bg-slate-100" aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu">
+          <svg id="menuIconOpen" class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" d="M4 7h16M4 12h16M4 17h16"/></svg>
+          <svg id="menuIconClose" class="w-5 h-5 hidden" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" d="M6 6l12 12M18 6 6 18"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <div id="mobileMenu" class="lg:hidden hidden border-t border-slate-200 bg-white">
+      <nav class="max-w-7xl mx-auto px-4 py-3 flex flex-col text-[15px] font-semibold text-slate-700" aria-label="Mobile">
+        <a href="#services" class="mobile-link py-3 border-b border-slate-100">Services</a>
+        <a href="#methodology" class="mobile-link py-3 border-b border-slate-100">Audit Methodology</a>
+        <a href="#industries" class="mobile-link py-3 border-b border-slate-100">Industries</a>
+        <a href="#calculator" class="mobile-link py-3 border-b border-slate-100">Savings Calculator</a>
+        <a href="#contact" class="mobile-link py-3">Contact</a>
+        <a href="#rfq" class="mobile-link mt-3 mb-2 text-center bg-emerald-600 text-white font-bold py-3 rounded-lg">Request Audit RFQ</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top">
+
+    <!-- ============ 2. HERO ============ -->
+    <section class="relative overflow-hidden bg-navy-900 text-white">
+      <div class="absolute inset-0 grid-bg" aria-hidden="true"></div>
+      <div class="absolute -top-40 -right-40 w-[560px] h-[560px] rounded-full bg-emerald-500/15 blur-3xl" aria-hidden="true"></div>
+      <div class="absolute -bottom-48 -left-32 w-[520px] h-[520px] rounded-full bg-teal-600/15 blur-3xl" aria-hidden="true"></div>
+
+      <div class="relative max-w-7xl mx-auto px-4 sm:px-6 pt-14 pb-16 md:pt-20 md:pb-24 grid lg:grid-cols-12 gap-12 items-center">
+        <div class="lg:col-span-7">
+          <div class="inline-flex items-center gap-2 rounded-full border border-emerald-500/30 bg-emerald-500/10 px-3.5 py-1.5 text-[12.5px] font-semibold text-emerald-300">
+            <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 live-dot"></span>
+            Industrial Energy · Water · Carbon Engineering
+          </div>
+
+          <h1 class="mt-6 text-[2.15rem] leading-[1.12] sm:text-5xl lg:text-[3.35rem] lg:leading-[1.08] font-extrabold tracking-tight">
+            Reduce Industrial Power &amp; Water Costs by
+            <span class="relative whitespace-nowrap text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-teal-500">up to 25%</span>
+            with Certified Engineering Audits
+          </h1>
+
+          <p class="mt-6 text-base sm:text-lg text-slate-300 leading-relaxed max-w-2xl">
+            Comprehensive Energy Audits, Water Audits, and GHG Carbon Footprint Verification for Tamil Nadu’s manufacturing plants, textile mills, and commercial facilities.
+          </p>
+
+          <div class="mt-8 flex flex-col sm:flex-row gap-3">
+            <a href="#rfq" class="inline-flex justify-center items-center gap-2 bg-emerald-600 hover:bg-emerald-500 text-white font-bold px-7 py-4 rounded-xl shadow-[0_12px_30px_-10px_rgba(16,185,129,.8)] transition-colors">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M8 7V3m8 4V3M4 11h16M5 5h14a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1Z"/></svg>
+              Book Site Walkthrough
+            </a>
+            <a href="#" data-wa="hero" class="inline-flex justify-center items-center gap-2 border border-slate-600 hover:border-[#25D366] hover:bg-[#25D366]/10 text-white font-bold px-7 py-4 rounded-xl transition-colors">
+              <svg class="w-5 h-5 text-[#25D366]" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.65.07-.3-.15-1.26-.46-2.4-1.48-.89-.79-1.49-1.77-1.66-2.07-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.62-.92-2.22-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.48s1.07 2.88 1.21 3.08c.15.2 2.1 3.2 5.08 4.49.71.31 1.26.49 1.69.63.71.23 1.36.19 1.87.12.57-.09 1.76-.72 2.01-1.41.25-.7.25-1.29.17-1.41-.07-.13-.27-.2-.57-.35zM12.04 21.5h-.01a9.43 9.43 0 0 1-4.8-1.31l-.35-.2-3.57.93.95-3.48-.22-.36a9.4 9.4 0 0 1-1.44-5.01c0-5.2 4.24-9.43 9.45-9.43a9.4 9.4 0 0 1 9.43 9.44c0 5.2-4.24 9.43-9.44 9.43zm8.03-17.46A11.3 11.3 0 0 0 12.04.72C5.78.72.68 5.82.68 12.08c0 2 .52 3.95 1.52 5.67L.58 23.64l6.03-1.58a11.3 11.3 0 0 0 5.43 1.38h.01c6.26 0 11.36-5.1 11.36-11.36 0-3.03-1.18-5.89-3.34-8.04z"/></svg>
+              WhatsApp Consultation
+            </a>
+          </div>
+
+          <!-- Trust ribbon -->
+          <ul class="mt-10 grid sm:grid-cols-3 gap-3">
+            <li class="flex items-start gap-3 rounded-xl border border-white/10 bg-white/[0.04] px-4 py-3.5">
+              <span class="mt-0.5 grid place-items-center w-8 h-8 shrink-0 rounded-lg bg-emerald-500/15 text-emerald-400">
+                <svg class="w-4.5 h-4.5 w-[18px] h-[18px]" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3 2 8l10 5 10-5-10-5Zm-6 7.5V16c0 1.5 2.7 3 6 3s6-1.5 6-3v-5.5"/></svg>
+              </span>
+              <span class="text-[13px] font-semibold leading-snug text-slate-200">Led by TNAU Energy &amp; Environmental Engineers</span>
+            </li>
+            <li class="flex items-start gap-3 rounded-xl border border-white/10 bg-white/[0.04] px-4 py-3.5">
+              <span class="mt-0.5 grid place-items-center w-8 h-8 shrink-0 rounded-lg bg-teal-500/15 text-teal-500">
+                <svg class="w-[18px] h-[18px]" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3 4 6v6c0 4.5 3.4 8.3 8 9 4.6-.7 8-4.5 8-9V6l-8-3Z"/><path stroke-linecap="round" stroke-linejoin="round" d="m9 12 2 2 4-4"/></svg>
+              </span>
+              <span class="text-[13px] font-semibold leading-snug text-slate-200">BEE &amp; TNPCB Compliance Aligned</span>
+            </li>
+            <li class="flex items-start gap-3 rounded-xl border border-white/10 bg-white/[0.04] px-4 py-3.5">
+              <span class="mt-0.5 grid place-items-center w-8 h-8 shrink-0 rounded-lg bg-emerald-500/15 text-emerald-400">
+                <svg class="w-[18px] h-[18px]" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path stroke-linecap="round" d="M3 12h18M12 3c2.5 2.6 3.8 5.6 3.8 9s-1.3 6.4-3.8 9c-2.5-2.6-3.8-5.6-3.8-9S9.5 5.6 12 3Z"/></svg>
+              </span>
+              <span class="text-[13px] font-semibold leading-snug text-slate-200">CBAM &amp; Export GHG Verification Ready</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Hero instrument panel -->
+        <div class="lg:col-span-5">
+          <div class="relative rounded-2xl border border-white/10 bg-navy-800/70 backdrop-blur p-5 sm:p-6 shadow-2xl">
+            <div class="flex items-center justify-between">
+              <div>
+                <p class="text-[11px] font-mono font-semibold tracking-wider text-slate-400 uppercase">Plant Load Profile · Live Logging</p>
+                <p class="mt-1 text-sm font-semibold text-white">Textile Wet Processing Unit, Tirupur</p>
+              </div>
+              <span class="inline-flex items-center gap-1.5 rounded-md bg-emerald-500/15 px-2 py-1 text-[11px] font-bold text-emerald-300"><span class="w-1.5 h-1.5 rounded-full bg-emerald-400 live-dot"></span>REC</span>
+            </div>
+
+            <div class="mt-5 rounded-xl bg-navy-950/70 border border-white/5 p-3">
+              <svg viewBox="0 0 400 150" class="w-full h-auto" role="img" aria-label="Illustrative chart showing load demand reducing after audit recommendations">
+                <defs>
+                  <linearGradient id="beforeFill" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#64748B" stop-opacity=".35"/><stop offset="1" stop-color="#64748B" stop-opacity="0"/></linearGradient>
+                  <linearGradient id="afterFill" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#10B981" stop-opacity=".45"/><stop offset="1" stop-color="#10B981" stop-opacity="0"/></linearGradient>
+                </defs>
+                <g stroke="#1E293B" stroke-width="1">
+                  <line x1="0" y1="30" x2="400" y2="30"/><line x1="0" y1="70" x2="400" y2="70"/><line x1="0" y1="110" x2="400" y2="110"/>
+                </g>
+                <path d="M0 58 C30 40,50 44,80 36 S130 30,160 46 S210 26,240 34 S300 20,330 38 S380 30,400 34 L400 150 L0 150Z" fill="url(#beforeFill)"/>
+                <path d="M0 58 C30 40,50 44,80 36 S130 30,160 46 S210 26,240 34 S300 20,330 38 S380 30,400 34" fill="none" stroke="#94A3B8" stroke-width="2" class="wave-line"/>
+                <path d="M0 84 C30 70,50 74,80 68 S130 64,160 76 S210 60,240 66 S300 56,330 70 S380 62,400 66 L400 150 L0 150Z" fill="url(#afterFill)"/>
+                <path d="M0 84 C30 70,50 74,80 68 S130 64,160 76 S210 60,240 66 S300 56,330 70 S380 62,400 66" fill="none" stroke="#10B981" stroke-width="2.5"/>
+              </svg>
+              <div class="mt-2 flex items-center gap-4 text-[11px] font-medium text-slate-400">
+                <span class="flex items-center gap-1.5"><span class="w-3 h-0.5 bg-slate-400"></span>Baseline kVA demand</span>
+                <span class="flex items-center gap-1.5"><span class="w-3 h-0.5 bg-emerald-500"></span>Post-optimisation</span>
+              </div>
+            </div>
+
+            <div class="mt-4 grid grid-cols-3 gap-2.5">
+              <div class="rounded-lg bg-white/[0.04] border border-white/5 p-3">
+                <p class="text-[10.5px] font-semibold uppercase tracking-wide text-slate-400">Power Factor</p>
+                <p class="mt-1 font-mono text-lg font-semibold text-white num">0.86<span class="text-emerald-400 text-sm"> → 0.99</span></p>
+              </div>
+              <div class="rounded-lg bg-white/[0.04] border border-white/5 p-3">
+                <p class="text-[10.5px] font-semibold uppercase tracking-wide text-slate-400">Air Leaks</p>
+                <p class="mt-1 font-mono text-lg font-semibold text-white num">31<span class="text-slate-400 text-sm"> tagged</span></p>
+              </div>
+              <div class="rounded-lg bg-white/[0.04] border border-white/5 p-3">
+                <p class="text-[10.5px] font-semibold uppercase tracking-wide text-slate-400">THD (V)</p>
+                <p class="mt-1 font-mono text-lg font-semibold text-white num">6.8<span class="text-emerald-400 text-sm">%</span></p>
+              </div>
+            </div>
+
+            <div class="mt-4 flex items-center justify-between rounded-xl bg-emerald-500/10 border border-emerald-500/25 px-4 py-3">
+              <span class="text-[13px] font-semibold text-emerald-200">Identified annual savings</span>
+              <span class="font-mono text-xl font-semibold text-emerald-300 num">₹38.6 L</span>
+            </div>
+            <p class="mt-3 text-[10.5px] text-slate-500">Illustrative representation of a typical audit outcome.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Stats strip -->
+      <div class="relative border-t border-white/10 bg-navy-950/60">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 py-7 grid grid-cols-2 md:grid-cols-4 gap-6 text-center md:text-left">
+          <div><p class="text-2xl sm:text-3xl font-extrabold text-white num" data-count="10" data-suffix="–25%">10–25%</p><p class="mt-1 text-xs sm:text-[13px] text-slate-400 font-medium">Typical cost reduction identified</p></div>
+          <div><p class="text-2xl sm:text-3xl font-extrabold text-white num">6–18 mo</p><p class="mt-1 text-xs sm:text-[13px] text-slate-400 font-medium">Usual payback on recommendations</p></div>
+          <div><p class="text-2xl sm:text-3xl font-extrabold text-white num">Scope 1–3</p><p class="mt-1 text-xs sm:text-[13px] text-slate-400 font-medium">GHG inventory coverage</p></div>
+          <div><p class="text-2xl sm:text-3xl font-extrabold text-white num">7 Clusters</p><p class="mt-1 text-xs sm:text-[13px] text-slate-400 font-medium">Industrial belts served in Tamil Nadu</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 3. CORE SERVICES ============ -->
+    <section id="services" class="relative py-20 md:py-28 bg-white">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6">
+        <div class="max-w-3xl reveal">
+          <p class="text-xs font-bold tracking-[0.2em] uppercase text-emerald-600">Core Services</p>
+          <h2 class="mt-3 text-3xl sm:text-4xl font-extrabold tracking-tight text-navy-900">Three audit disciplines. One engineering team accountable for the numbers.</h2>
+          <p class="mt-4 text-slate-600 text-base sm:text-lg leading-relaxed">Every engagement ends with a quantified, investment-grade report: measured baselines, itemised savings, capex estimates and payback for each recommendation, ready for your board, your bank or your regulator.</p>
+        </div>
+
+        <div class="mt-14 grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+          <!-- Service 1 -->
+          <article class="reveal group flex flex-col rounded-2xl border border-slate-200 bg-white shadow-card hover:shadow-lift hover:-translate-y-1 transition-all duration-300 overflow-hidden">
+            <div class="h-1.5 bg-gradient-to-r from-emerald-600 to-emerald-400"></div>
+            <div class="p-7 flex flex-col flex-1">
+              <div class="flex items-start justify-between">
+                <span class="grid place-items-center w-14 h-14 rounded-xl bg-emerald-50 text-emerald-600 border border-emerald-100">
+                  <svg class="w-7 h-7" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M13 2 4 14h7l-1 8 9-12h-7l1-8Z"/></svg>
+                </span>
+                <span class="text-[11px] font-mono font-semibold text-slate-400">SVC-01</span>
+              </div>
+              <h3 class="mt-6 text-xl font-extrabold text-navy-900">Industrial Energy Audits</h3>
+              <p class="mt-2.5 text-[14.5px] text-slate-600 leading-relaxed">Detailed walkthrough and investment-grade audits that find where every kWh and kVA is lost, from the HT incomer down to individual motors.</p>
+
+              <ul class="mt-5 space-y-2.5 text-[14px] text-slate-700">
+                <li class="flex gap-2.5"><svg class="w-5 h-5 shrink-0 text-emerald-600" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="m5 12 4 4 10-10"/></svg>Thermal imaging of panels, bus ducts &amp; motors</li>
+                <li class="flex gap-2.5"><svg class="w-5 h-5 shrink-0 text-emerald-600" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="m5 12 4 4 10-10"/></svg>3-phase power logging, harmonics &amp; PF analysis</li>
+                <li class="flex gap-2.5"><svg class="w-5 h-5 shrink-0 text-emerald-600" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="m5 12 4 4 10-10"/></svg>Air compressor leak detection &amp; FAD testing</li>
+                <li class="flex gap-2.5"><svg class="w-5 h-5 shrink-0 text-emerald-600" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="m5 12 4 4 10-10"/></svg>HVAC, chiller &amp; cooling tower optimisation</li>
+                <li class="flex gap-2.5"><svg class="w-5 h-5 shrink-0 text-emerald-600" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="m5 12 4 4 10-10"/></svg>BEE-aligned reporting for Designated Consumers</li>
+              </ul>
+
+              <div class="mt-6 rounded-xl bg-slate-50 border border-slate-200 p-4">
+                <p class="text-[11px] font-bold uppercase tracking-wider text-slate-500">Key Deliverables</p>
+                <div class="mt-2.5 flex flex-wrap gap-1.5">
+                  <span class="text-[12px] font-semibold text-navy-800 bg-white border border-slate-200 rounded-md px-2 py-1">Energy baseline &amp; SEC</span>
+                  <span class="text-[12px] font-semibold text-navy-800 bg-white border border-slate-200 rounded-md px-2 py-1">Thermography report</span>
+                  <span class="text-[12px] font-semibold text-navy-800 bg-white border border-slate-200 rounded-md px-2 py-1">ECM list with ROI</span>
+                  <span class="text-[12px] font-semibold text-navy-800 bg-white border border-slate-200 rounded-md px-2 py-1">Tariff optimisation</span>
+                </div>
+              </div>
+
+              <div class="mt-auto pt-6">
+                <button type="button" data-inquire="Industrial Energy Audit" class="w-full inline-flex justify-center items-center gap-2 rounded-xl border-2 border-navy-900 text-navy-900 font-bold py-3 hover:bg-navy-900 hover:text-white transition-colors">
+                  Inquire for this Service
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14M13 6l6 6-6 6"/></svg>
+                </button>
+              </div>
+            </div>
+          </article>
+
+          <!-- Service 2 -->
+          <article class="reveal group flex flex-col rounded-2xl border border-slate-200 bg-white shadow-card hover:shadow-lift hover:-translate-y-1 transition-all duration-300 overflow-hidden" style="transition-delay:.08s">
+            <div class="h-1.5 bg-gradient-to-r from-teal-700 to-teal-500"></div>
+            <div class="p-7 flex flex-col flex-1">
+              <div class="flex items-start justify-between">
+                <span class="grid place-items-center w-14 h-14 rounded-xl bg-cyan-50 text-teal-600 border border-cyan-100">
+                  <svg class="w-7 h-7" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M12 2.7S5.5 9.6 5.5 14.2a6.5 6.5 0 0 0 13 0C18.5 9.6 12 2.7 12 2.7Z"/><path stroke-linecap="round" d="M9 15a3 3 0 0 0 3 3"/></svg>
+                </span>
+                <span class="text-[11px] font-mono font-semibold text-slate-400">SVC-02</span>
+              </div>
+              <h3 class="mt-6 text-xl font-extrabold text-navy-900">Water Balance &amp; Audits</h3>
+              <p class="mt-2.5 text-[14.5px] text-slate-600 leading-relaxed">Measured water accounting from source to discharge, so you can cut freshwater intake, lower treatment cost and stay ahead of TNPCB conditions.</p>
+
+              <ul class="mt-5 space-y-2.5 text-[14px] text-slate-700">
+                <li class="flex gap-2.5"><svg class="w-5 h-5 shrink-0 text-teal-600" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="m5 12 4 4 10-10"/></svg>ETP / STP performance evaluation</li>
+                <li class="flex gap-2.5"><svg class="w-5 h-5 shrink-0 text-teal-600" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="m5 12 4 4 10-10"/></svg>Plant-wide water balance diagrams</li>
+                <li class="flex gap-2.5"><svg class="w-5 h-5 shrink-0 text-teal-600" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="m5 12 4 4 10-10"/></svg>Leak mapping with ultrasonic flow metering</li>
+                <li class="flex gap-2.5"><svg class="w-5 h-5 shrink-0 text-teal-600" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="m5 12 4 4 10-10"/></svg>ZLD &amp; reject recovery assessment</li>
+                <li class="flex gap-2.5"><svg class="w-5 h-5 shrink-0 text-teal-600" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="m5 12 4 4 10-10"/></svg>TNPCB regulatory audit compliance</li>
+              </ul>
+
+              <div class="mt-6 rounded-xl bg-slate-50 border border-slate-200 p-4">
+                <p class="text-[11px] font-bold uppercase tracking-wider text-slate-500">Key Deliverables</p>
+                <div class="mt-2.5 flex flex-wrap gap-1.5">
+                  <span class="text-[12px] font-semibold text-navy-800 bg-white border border-slate-200 rounded-md px-2 py-1">Water balance diagram</span>
+                  <span class="text-[12px] font-semibold text-navy-800 bg-white border border-slate-200 rounded-md px-2 py-1">Specific water use KPIs</span>
+                  <span class="text-[12px] font-semibold text-navy-800 bg-white border border-slate-200 rounded-md px-2 py-1">ETP efficiency report</span>
+                  <span class="text-[12px] font-semibold text-navy-800 bg-white border border-slate-200 rounded-md px-2 py-1">Compliance gap list</span>
+                </div>
+              </div>
+
+              <div class="mt-auto pt-6">
+                <button type="button" data-inquire="Water Balance &amp; Audit" class="w-full inline-flex justify-center items-center gap-2 rounded-xl border-2 border-navy-900 text-navy-900 font-bold py-3 hover:bg-navy-900 hover:text-white transition-colors">
+                  Inquire for this Service
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14M13 6l6 6-6 6"/></svg>
+                </button>
+              </div>
+            </div>
+          </article>
+
+          <!-- Service 3 -->
+          <article class="reveal group flex flex-col rounded-2xl border border-slate-200 bg-white shadow-card hover:shadow-lift hover:-translate-y-1 transition-all duration-300 overflow-hidden md:col-span-2 lg:col-span-1" style="transition-delay:.16s">
+            <div class="h-1.5 bg-gradient-to-r from-navy-900 via-emerald-600 to-teal-600"></div>
+            <div class="p-7 flex flex-col flex-1">
+              <div class="flex items-start justify-between">
+                <span class="grid place-items-center w-14 h-14 rounded-xl bg-slate-100 text-navy-900 border border-slate-200">
+                  <svg class="w-7 h-7" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M6 19a4 4 0 0 1-.6-7.96A6 6 0 0 1 17 9.5a4.5 4.5 0 0 1 1 8.9"/><path stroke-linecap="round" stroke-linejoin="round" d="M9 16h2.5M9 19h2.5M14.5 15.5v4"/></svg>
+                </span>
+                <span class="text-[11px] font-mono font-semibold text-slate-400">SVC-03</span>
+              </div>
+              <h3 class="mt-6 text-xl font-extrabold text-navy-900">GHG Verification &amp; Carbon Accounting</h3>
+              <p class="mt-2.5 text-[14.5px] text-slate-600 leading-relaxed">GHG Protocol and ISO 14064-aligned inventories that hold up to buyer, investor and EU border scrutiny, built for exporters who cannot afford a surprise.</p>
+
+              <ul class="mt-5 space-y-2.5 text-[14px] text-slate-700">
+                <li class="flex gap-2.5"><svg class="w-5 h-5 shrink-0 text-emerald-600" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="m5 12 4 4 10-10"/></svg>Scope 1, 2 &amp; 3 emissions assessment</li>
+                <li class="flex gap-2.5"><svg class="w-5 h-5 shrink-0 text-emerald-600" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="m5 12 4 4 10-10"/></svg>Product carbon footprints (cradle-to-gate)</li>
+                <li class="flex gap-2.5"><svg class="w-5 h-5 shrink-0 text-emerald-600" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="m5 12 4 4 10-10"/></svg>EU-CBAM embedded emissions readiness</li>
+                <li class="flex gap-2.5"><svg class="w-5 h-5 shrink-0 text-emerald-600" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="m5 12 4 4 10-10"/></svg>BRSR Core &amp; buyer ESG questionnaires</li>
+                <li class="flex gap-2.5"><svg class="w-5 h-5 shrink-0 text-emerald-600" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="m5 12 4 4 10-10"/></svg>Decarbonisation roadmap &amp; RE sourcing</li>
+              </ul>
+
+              <div class="mt-6 rounded-xl bg-slate-50 border border-slate-200 p-4">
+                <p class="text-[11px] font-bold uppercase tracking-wider text-slate-500">Key Deliverables</p>
+                <div class="mt-2.5 flex flex-wrap gap-1.5">
+                  <span class="text-[12px] font-semibold text-navy-800 bg-white border border-slate-200 rounded-md px-2 py-1">GHG inventory report</span>
+                  <span class="text-[12px] font-semibold text-navy-800 bg-white border border-slate-200 rounded-md px-2 py-1">PCF per SKU</span>
+                  <span class="text-[12px] font-semibold text-navy-800 bg-white border border-slate-200 rounded-md px-2 py-1">CBAM data templates</span>
+                  <span class="text-[12px] font-semibold text-navy-800 bg-white border border-slate-200 rounded-md px-2 py-1">Net-zero pathway</span>
+                </div>
+              </div>
+
+              <div class="mt-auto pt-6">
+                <button type="button" data-inquire="GHG Verification &amp; Carbon Accounting" class="w-full inline-flex justify-center items-center gap-2 rounded-xl border-2 border-navy-900 text-navy-900 font-bold py-3 hover:bg-navy-900 hover:text-white transition-colors">
+                  Inquire for this Service
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14M13 6l6 6-6 6"/></svg>
+                </button>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 4. SAVINGS ESTIMATOR ============ -->
+    <section id="calculator" class="relative py-20 md:py-28 bg-slate-50 border-y border-slate-200">
+      <div class="absolute inset-0 grid-bg-light" aria-hidden="true"></div>
+      <div class="relative max-w-7xl mx-auto px-4 sm:px-6">
+        <div class="max-w-3xl reveal">
+          <p class="text-xs font-bold tracking-[0.2em] uppercase text-emerald-600">Audit Scope &amp; Savings Estimator</p>
+          <h2 class="mt-3 text-3xl sm:text-4xl font-extrabold tracking-tight text-navy-900">See what an audit could be worth to your plant in under a minute.</h2>
+          <p class="mt-4 text-slate-600 text-base sm:text-lg leading-relaxed">Pick your sector and move the slider to your average monthly TANGEDCO / TNPDCL bill. Estimates are based on savings ranges we typically identify in comparable Tamil Nadu facilities.</p>
+        </div>
+
+        <div class="mt-12 grid lg:grid-cols-5 gap-6 reveal">
+          <!-- Inputs -->
+          <div class="lg:col-span-3 rounded-2xl border border-slate-200 bg-white shadow-card p-6 sm:p-8">
+            <fieldset>
+              <legend class="flex items-center gap-2 text-sm font-bold text-navy-900">
+                <span class="grid place-items-center w-6 h-6 rounded-md bg-navy-900 text-white text-xs font-mono">1</span>
+                Select Industry Type
+              </legend>
+              <div id="industryChips" class="mt-4 grid grid-cols-2 sm:grid-cols-3 gap-2.5">
+                <label class="ind-chip cursor-pointer">
+                  <input type="radio" name="industry" value="textile" class="sr-only" checked />
+                  <span class="flex items-center gap-2 h-full rounded-xl border border-slate-200 bg-white px-3.5 py-3 text-[13.5px] font-semibold text-slate-700 hover:border-slate-400 transition-all">
+                    <svg class="w-5 h-5 shrink-0 text-slate-400" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M8 3 3 6l2 5 2-1v11h10V10l2 1 2-5-5-3a4 4 0 0 1-8 0Z"/></svg>
+                    Textile / Garments
+                  </span>
+                </label>
+                <label class="ind-chip cursor-pointer">
+                  <input type="radio" name="industry" value="auto" class="sr-only" />
+                  <span class="flex items-center gap-2 h-full rounded-xl border border-slate-200 bg-white px-3.5 py-3 text-[13.5px] font-semibold text-slate-700 hover:border-slate-400 transition-all">
+                    <svg class="w-5 h-5 shrink-0 text-slate-400" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path stroke-linecap="round" d="M12 2v3m0 14v3M4.9 4.9l2.1 2.1m10 10 2.1 2.1M2 12h3m14 0h3M4.9 19.1 7 17m10-10 2.1-2.1"/></svg>
+                    Auto Components
+                  </span>
+                </label>
+                <label class="ind-chip cursor-pointer">
+                  <input type="radio" name="industry" value="food" class="sr-only" />
+                  <span class="flex items-center gap-2 h-full rounded-xl border border-slate-200 bg-white px-3.5 py-3 text-[13.5px] font-semibold text-slate-700 hover:border-slate-400 transition-all">
+                    <svg class="w-5 h-5 shrink-0 text-slate-400" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M12 21c-4 0-7-3-7-7 0-5 7-11 7-11s7 6 7 11c0 4-3 7-7 7Zm0 0v-8"/></svg>
+                    Food Processing
+                  </span>
+                </label>
+                <label class="ind-chip cursor-pointer">
+                  <input type="radio" name="industry" value="foundry" class="sr-only" />
+                  <span class="flex items-center gap-2 h-full rounded-xl border border-slate-200 bg-white px-3.5 py-3 text-[13.5px] font-semibold text-slate-700 hover:border-slate-400 transition-all">
+                    <svg class="w-5 h-5 shrink-0 text-slate-400" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M3 21V10l5 3V10l5 3V10l5 3V4h3v17H3Z"/></svg>
+                    Engineering / Foundry
+                  </span>
+                </label>
+                <label class="ind-chip cursor-pointer col-span-2 sm:col-span-1">
+                  <input type="radio" name="industry" value="commercial" class="sr-only" />
+                  <span class="flex items-center gap-2 h-full rounded-xl border border-slate-200 bg-white px-3.5 py-3 text-[13.5px] font-semibold text-slate-700 hover:border-slate-400 transition-all">
+                    <svg class="w-5 h-5 shrink-0 text-slate-400" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M4 21V5l8-3v19M12 8l8 3v10M8 7v.01M8 11v.01M8 15v.01M16 14v.01M16 17v.01M2 21h20"/></svg>
+                    Commercial Building
+                  </span>
+                </label>
+              </div>
+            </fieldset>
+
+            <div class="mt-9">
+              <div class="flex items-end justify-between gap-4">
+                <label for="billSlider" class="flex items-center gap-2 text-sm font-bold text-navy-900">
+                  <span class="grid place-items-center w-6 h-6 rounded-md bg-navy-900 text-white text-xs font-mono">2</span>
+                  Monthly Electricity Bill
+                </label>
+                <output id="billOutput" for="billSlider" class="font-mono text-2xl sm:text-3xl font-semibold text-navy-900 num">₹8 Lakhs</output>
+              </div>
+              <input id="billSlider" type="range" min="1" max="50" step="0.5" value="8" class="euw-range mt-5" aria-describedby="billHint" />
+              <div class="mt-2.5 flex justify-between text-[11.5px] font-semibold text-slate-400 font-mono">
+                <span>₹1 L</span><span>₹10 L</span><span>₹25 L</span><span>₹50 L+</span>
+              </div>
+              <p id="billHint" class="mt-4 text-[13px] text-slate-500">Include energy charges, demand charges and any DG / captive power cost for the most accurate estimate.</p>
+            </div>
+
+            <div class="mt-8 rounded-xl border border-dashed border-slate-300 bg-slate-50 p-4">
+              <p class="text-[11px] font-bold uppercase tracking-wider text-slate-500">Recommended audit scope for this profile</p>
+              <p id="scopeText" class="mt-2 text-[14px] text-slate-700 leading-relaxed"></p>
+            </div>
+          </div>
+
+          <!-- Results -->
+          <div class="lg:col-span-2 relative overflow-hidden rounded-2xl bg-navy-900 text-white shadow-lift p-6 sm:p-8 flex flex-col">
+            <div class="absolute -top-24 -right-24 w-64 h-64 rounded-full bg-emerald-500/20 blur-3xl" aria-hidden="true"></div>
+            <div class="relative flex flex-col flex-1">
+              <p class="text-[11px] font-mono font-semibold tracking-wider uppercase text-slate-400">Estimated Outcome</p>
+
+              <div class="mt-5">
+                <p class="text-sm font-semibold text-slate-300">Estimated Annual Power Savings</p>
+                <p id="savingsValue" class="mt-1 text-4xl sm:text-[2.6rem] font-extrabold text-emerald-400 num leading-tight" aria-live="polite">₹0</p>
+                <p id="savingsRange" class="mt-1 text-[13px] text-slate-400 num"></p>
+              </div>
+
+              <div class="mt-6">
+                <div class="flex justify-between text-[12px] font-semibold text-slate-400"><span>Savings potential</span><span id="pctLabel" class="text-emerald-300 num"></span></div>
+                <div class="mt-2 h-2.5 rounded-full bg-white/10 overflow-hidden">
+                  <div id="pctBar" class="h-full rounded-full bg-gradient-to-r from-emerald-600 to-teal-500 transition-all duration-500" style="width:0%"></div>
+                </div>
+                <div class="mt-1.5 flex justify-between text-[10.5px] font-mono text-slate-500"><span>10%</span><span>22%</span></div>
+              </div>
+
+              <div class="mt-6 grid grid-cols-2 gap-3">
+                <div class="rounded-xl bg-white/[0.05] border border-white/10 p-4">
+                  <p class="text-[11.5px] font-semibold text-slate-400">Potential Payback</p>
+                  <p id="paybackValue" class="mt-1 text-xl font-extrabold text-white num"></p>
+                </div>
+                <div class="rounded-xl bg-white/[0.05] border border-white/10 p-4">
+                  <p class="text-[11.5px] font-semibold text-slate-400">CO₂ Avoided / yr</p>
+                  <p id="co2Value" class="mt-1 text-xl font-extrabold text-white num"></p>
+                </div>
+              </div>
+
+              <div class="mt-3 rounded-xl bg-white/[0.05] border border-white/10 p-4">
+                <p class="text-[11.5px] font-semibold text-slate-400">Indicative implementation investment</p>
+                <p id="capexValue" class="mt-1 text-lg font-bold text-white num"></p>
+              </div>
+
+              <a id="calcWhatsApp" href="#" target="_blank" rel="noopener" class="mt-7 inline-flex justify-center items-center gap-2 rounded-xl bg-[#25D366] hover:bg-[#1fb857] text-navy-950 font-extrabold px-5 py-4 transition-colors text-center">
+                <svg class="w-5 h-5 shrink-0" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.65.07-.3-.15-1.26-.46-2.4-1.48-.89-.79-1.49-1.77-1.66-2.07-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.62-.92-2.22-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.48s1.07 2.88 1.21 3.08c.15.2 2.1 3.2 5.08 4.49.71.31 1.26.49 1.69.63.71.23 1.36.19 1.87.12.57-.09 1.76-.72 2.01-1.41.25-.7.25-1.29.17-1.41-.07-.13-.27-.2-.57-.35zM12.04 21.5h-.01a9.43 9.43 0 0 1-4.8-1.31l-.35-.2-3.57.93.95-3.48-.22-.36a9.4 9.4 0 0 1-1.44-5.01c0-5.2 4.24-9.43 9.45-9.43a9.4 9.4 0 0 1 9.43 9.44c0 5.2-4.24 9.43-9.44 9.43zm8.03-17.46A11.3 11.3 0 0 0 12.04.72C5.78.72.68 5.82.68 12.08c0 2 .52 3.95 1.52 5.67L.58 23.64l6.03-1.58a11.3 11.3 0 0 0 5.43 1.38h.01c6.26 0 11.36-5.1 11.36-11.36 0-3.03-1.18-5.89-3.34-8.04z"/></svg>
+                Get Tailored Audit Quote on WhatsApp
+              </a>
+              <p class="mt-4 text-[11px] leading-relaxed text-slate-500">Indicative only. Actual savings are confirmed after measured data logging at your site. CO₂ uses the CEA grid emission factor of 0.71 tCO₂/MWh at an average tariff of ₹8/kWh.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 5. METHODOLOGY & INSTRUMENTATION ============ -->
+    <section id="methodology" class="relative py-20 md:py-28 bg-white">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6">
+        <div class="grid lg:grid-cols-12 gap-10 items-end">
+          <div class="lg:col-span-7 reveal">
+            <p class="text-xs font-bold tracking-[0.2em] uppercase text-teal-600">Technical Instrumentation &amp; Methodology</p>
+            <h2 class="mt-3 text-3xl sm:text-4xl font-extrabold tracking-tight text-navy-900">Measured, not estimated. Calibrated, laboratory-grade instruments on every audit.</h2>
+          </div>
+          <p class="lg:col-span-5 text-slate-600 text-base sm:text-lg leading-relaxed reveal">Our findings come from logged field data, not nameplate assumptions. Every instrument carries a traceable calibration certificate that we attach to your final report.</p>
+        </div>
+
+        <!-- Instruments -->
+        <div class="mt-14 grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+          <div class="reveal rounded-2xl border border-slate-200 bg-white p-6 shadow-card hover:border-emerald-500/50 transition-colors">
+            <div class="flex items-center justify-between">
+              <span class="grid place-items-center w-12 h-12 rounded-xl bg-navy-900 text-emerald-400">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="13" rx="2"/><path stroke-linecap="round" stroke-linejoin="round" d="M6 13l2.5-3 2.5 2 3-4 3 3M8 21h8M12 17v4"/></svg>
+              </span>
+              <span class="rounded-md bg-emerald-50 border border-emerald-100 px-2 py-0.5 text-[10.5px] font-bold text-emerald-700">IEC 61000-4-30</span>
+            </div>
+            <h3 class="mt-5 text-[16px] font-extrabold text-navy-900">Class-A Power Quality Analyzers</h3>
+            <p class="mt-2 text-[13.5px] text-slate-600 leading-relaxed">7-day logging of kW, kVA, PF, harmonics, flicker and transients at incomers and major feeders.</p>
+          </div>
+          <div class="reveal rounded-2xl border border-slate-200 bg-white p-6 shadow-card hover:border-emerald-500/50 transition-colors">
+            <div class="flex items-center justify-between">
+              <span class="grid place-items-center w-12 h-12 rounded-xl bg-navy-900 text-emerald-400">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M4 5h11a2 2 0 0 1 2 2v6a2 2 0 0 1-2 2H9l-2 5H5l1-5H4a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1Zm13 3h3v4h-3"/><circle cx="9.5" cy="10" r="2.5"/></svg>
+              </span>
+              <span class="rounded-md bg-emerald-50 border border-emerald-100 px-2 py-0.5 text-[10.5px] font-bold text-emerald-700">Radiometric IR</span>
+            </div>
+            <h3 class="mt-5 text-[16px] font-extrabold text-navy-900">Fluke Thermal Cameras</h3>
+            <p class="mt-2 text-[13.5px] text-slate-600 leading-relaxed">Hot-spot detection on LT panels, cable terminations, motors, steam lines and furnace refractory.</p>
+          </div>
+          <div class="reveal rounded-2xl border border-slate-200 bg-white p-6 shadow-card hover:border-teal-500/50 transition-colors">
+            <div class="flex items-center justify-between">
+              <span class="grid place-items-center w-12 h-12 rounded-xl bg-navy-900 text-teal-500">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" d="M2 12h20"/><rect x="7" y="6" width="4" height="4" rx="1"/><rect x="13" y="14" width="4" height="4" rx="1"/><path stroke-linecap="round" stroke-dasharray="1.5 2" d="M9 10l6 4"/></svg>
+              </span>
+              <span class="rounded-md bg-cyan-50 border border-cyan-100 px-2 py-0.5 text-[10.5px] font-bold text-teal-700">Clamp-on, Non-invasive</span>
+            </div>
+            <h3 class="mt-5 text-[16px] font-extrabold text-navy-900">Ultrasonic Flow Meters</h3>
+            <p class="mt-2 text-[13.5px] text-slate-600 leading-relaxed">Measure water, effluent and chilled-water flows without cutting pipes or stopping production.</p>
+          </div>
+          <div class="reveal rounded-2xl border border-slate-200 bg-white p-6 shadow-card hover:border-emerald-500/50 transition-colors">
+            <div class="flex items-center justify-between">
+              <span class="grid place-items-center w-12 h-12 rounded-xl bg-navy-900 text-emerald-400">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M6 21V11h4v10M14 21V7h4v14M4 21h16M8 11c0-2 1-3 0-5s1-3 1-3M16 7c0-2 1-2.5 0-4"/></svg>
+              </span>
+              <span class="rounded-md bg-emerald-50 border border-emerald-100 px-2 py-0.5 text-[10.5px] font-bold text-emerald-700">O₂ · CO · NOx</span>
+            </div>
+            <h3 class="mt-5 text-[16px] font-extrabold text-navy-900">Flue Gas Analyzers</h3>
+            <p class="mt-2 text-[13.5px] text-slate-600 leading-relaxed">Combustion efficiency testing for boilers, thermic fluid heaters, furnaces and DG sets.</p>
+          </div>
+        </div>
+
+        <!-- 4-step process -->
+        <div class="mt-20 rounded-3xl bg-navy-900 text-white p-6 sm:p-10 lg:p-12 relative overflow-hidden reveal">
+          <div class="absolute inset-0 grid-bg opacity-70" aria-hidden="true"></div>
+          <div class="relative">
+            <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-4">
+              <div>
+                <p class="text-xs font-bold tracking-[0.2em] uppercase text-emerald-400">Our 4-Step Audit Process</p>
+                <h3 class="mt-3 text-2xl sm:text-3xl font-extrabold tracking-tight">From first walkthrough to verified savings</h3>
+              </div>
+              <p class="text-sm text-slate-400 max-w-sm">Typical engagement: 3 to 6 weeks depending on plant size and connected load.</p>
+            </div>
+
+            <ol class="mt-10 grid md:grid-cols-2 lg:grid-cols-4 gap-5 lg:gap-0">
+              <li class="relative lg:pr-6">
+                <div class="hidden lg:block absolute top-6 left-14 right-0 h-px bg-gradient-to-r from-emerald-500/70 to-emerald-500/10" aria-hidden="true"></div>
+                <span class="relative grid place-items-center w-12 h-12 rounded-xl bg-emerald-600 font-mono font-semibold text-lg shadow-[0_8px_24px_-8px_rgba(16,185,129,.8)]">01</span>
+                <h4 class="mt-5 text-lg font-bold">Preliminary Site Walkthrough</h4>
+                <p class="mt-2 text-[14px] text-slate-400 leading-relaxed">Review 12 months of bills, SLD and production data. Walk the plant with your maintenance team to define the audit boundary.</p>
+                <p class="mt-3 text-[12px] font-mono text-emerald-400">Day 1–3</p>
+              </li>
+              <li class="relative lg:px-6 rounded-xl lg:rounded-none bg-white/[0.03] lg:bg-transparent p-5 lg:p-0 lg:pt-0 md:mt-0">
+                <div class="hidden lg:block absolute top-6 left-20 right-0 h-px bg-gradient-to-r from-emerald-500/70 to-emerald-500/10" aria-hidden="true"></div>
+                <span class="relative grid place-items-center w-12 h-12 rounded-xl bg-navy-800 border border-emerald-500/50 font-mono font-semibold text-lg text-emerald-300">02</span>
+                <h4 class="mt-5 text-lg font-bold">Quantitative Data Logging</h4>
+                <p class="mt-2 text-[14px] text-slate-400 leading-relaxed">Deploy power analyzers, flow meters and thermal surveys across shifts to capture real operating loads and losses.</p>
+                <p class="mt-3 text-[12px] font-mono text-emerald-400">Week 1–2</p>
+              </li>
+              <li class="relative lg:px-6 rounded-xl lg:rounded-none bg-white/[0.03] lg:bg-transparent p-5 lg:p-0">
+                <div class="hidden lg:block absolute top-6 left-20 right-0 h-px bg-gradient-to-r from-emerald-500/70 to-emerald-500/10" aria-hidden="true"></div>
+                <span class="relative grid place-items-center w-12 h-12 rounded-xl bg-navy-800 border border-emerald-500/50 font-mono font-semibold text-lg text-emerald-300">03</span>
+                <h4 class="mt-5 text-lg font-bold">Analysis &amp; ROI Report</h4>
+                <p class="mt-2 text-[14px] text-slate-400 leading-relaxed">Itemised energy conservation measures with capex, annual savings, payback and CO₂ impact, ranked for decision-making.</p>
+                <p class="mt-3 text-[12px] font-mono text-emerald-400">Week 3–4</p>
+              </li>
+              <li class="relative lg:pl-6 rounded-xl lg:rounded-none bg-white/[0.03] lg:bg-transparent p-5 lg:p-0">
+                <span class="relative grid place-items-center w-12 h-12 rounded-xl bg-navy-800 border border-emerald-500/50 font-mono font-semibold text-lg text-emerald-300">04</span>
+                <h4 class="mt-5 text-lg font-bold">Implementation Guidance</h4>
+                <p class="mt-2 text-[14px] text-slate-400 leading-relaxed">Vendor-neutral specs, tender support and post-implementation M&amp;V so the savings show up on your next bill.</p>
+                <p class="mt-3 text-[12px] font-mono text-emerald-400">Ongoing</p>
+              </li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 6. INDUSTRIES ============ -->
+    <section id="industries" class="relative py-20 md:py-28 bg-slate-50 border-y border-slate-200">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6">
+        <div class="max-w-3xl reveal">
+          <p class="text-xs font-bold tracking-[0.2em] uppercase text-emerald-600">Industries Served</p>
+          <h2 class="mt-3 text-3xl sm:text-4xl font-extrabold tracking-tight text-navy-900">Built around Tamil Nadu’s industrial corridors.</h2>
+          <p class="mt-4 text-slate-600 text-base sm:text-lg leading-relaxed">We know the load profiles, tariff categories and pollution control conditions of the clusters we work in, which means faster audits and recommendations that fit how your plant actually runs.</p>
+        </div>
+
+        <div class="mt-12 grid sm:grid-cols-2 gap-5">
+          <!-- Textile -->
+          <article class="reveal group relative overflow-hidden rounded-2xl bg-navy-900 text-white min-h-[300px] flex flex-col justify-end p-7">
+            <svg class="absolute inset-0 w-full h-full opacity-90 group-hover:scale-105 transition-transform duration-700" viewBox="0 0 600 340" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+              <defs><linearGradient id="g1" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0E7490"/><stop offset="1" stop-color="#0F172A"/></linearGradient></defs>
+              <rect width="600" height="340" fill="url(#g1)"/>
+              <g fill="none" stroke="#22D3EE" stroke-opacity=".22" stroke-width="2">
+                <path d="M0 60 Q150 20 300 60 T600 60"/><path d="M0 90 Q150 50 300 90 T600 90"/><path d="M0 120 Q150 80 300 120 T600 120"/><path d="M0 150 Q150 110 300 150 T600 150"/>
+              </g>
+              <g fill="#0F172A" fill-opacity=".6"><rect x="360" y="150" width="200" height="190"/><path d="M360 150l40-30 40 30 40-30 40 30 40-30v30z"/></g>
+              <g fill="#22D3EE" fill-opacity=".35"><rect x="380" y="200" width="24" height="14"/><rect x="420" y="200" width="24" height="14"/><rect x="460" y="200" width="24" height="14"/><rect x="500" y="200" width="24" height="14"/><rect x="380" y="232" width="24" height="14"/><rect x="420" y="232" width="24" height="14"/><rect x="460" y="232" width="24" height="14"/><rect x="500" y="232" width="24" height="14"/></g>
+              <rect x="520" y="70" width="18" height="80" fill="#0F172A" fill-opacity=".7"/>
+            </svg>
+            <div class="absolute inset-0 bg-gradient-to-t from-navy-950 via-navy-950/70 to-transparent" aria-hidden="true"></div>
+            <div class="relative">
+              <span class="inline-flex items-center gap-1.5 rounded-md bg-white/10 backdrop-blur px-2.5 py-1 text-[11.5px] font-semibold text-cyan-200 border border-white/10">
+                <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a7 7 0 0 0-7 7c0 5 7 13 7 13s7-8 7-13a7 7 0 0 0-7-7Zm0 9.5a2.5 2.5 0 1 1 0-5 2.5 2.5 0 0 1 0 5Z"/></svg>
+                Tirupur · Erode · Karur
+              </span>
+              <h3 class="mt-3 text-2xl font-extrabold">Garment &amp; Textile Wet Processing</h3>
+              <p class="mt-2 text-[14px] text-slate-300 max-w-md">Dyeing and bleaching units, knitting, processing houses and spinning mills: thermic fluid heaters, steam, ZLD plants and compressed air.</p>
+              <div class="mt-4 flex flex-wrap gap-2 text-[11.5px] font-semibold">
+                <span class="rounded-full bg-teal-600/30 border border-teal-500/40 px-2.5 py-1">ZLD &amp; ETP audits</span>
+                <span class="rounded-full bg-emerald-600/30 border border-emerald-500/40 px-2.5 py-1">Buyer ESG / Higg FEM</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- Auto -->
+          <article class="reveal group relative overflow-hidden rounded-2xl bg-navy-900 text-white min-h-[300px] flex flex-col justify-end p-7" style="transition-delay:.08s">
+            <svg class="absolute inset-0 w-full h-full opacity-90 group-hover:scale-105 transition-transform duration-700" viewBox="0 0 600 340" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+              <defs><linearGradient id="g2" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#047857"/><stop offset="1" stop-color="#0F172A"/></linearGradient></defs>
+              <rect width="600" height="340" fill="url(#g2)"/>
+              <g fill="none" stroke="#34D399" stroke-opacity=".28" stroke-width="2">
+                <circle cx="470" cy="110" r="60"/><circle cx="470" cy="110" r="22"/>
+                <path d="M470 38v20M470 162v20M398 110h20M522 110h20M419 59l14 14M507 147l14 14M419 161l14-14M507 73l14-14"/>
+                <circle cx="370" cy="190" r="38"/><circle cx="370" cy="190" r="13"/>
+              </g>
+              <g stroke="#34D399" stroke-opacity=".18" stroke-width="1"><path d="M0 250h600M0 280h600M0 310h600"/></g>
+            </svg>
+            <div class="absolute inset-0 bg-gradient-to-t from-navy-950 via-navy-950/70 to-transparent" aria-hidden="true"></div>
+            <div class="relative">
+              <span class="inline-flex items-center gap-1.5 rounded-md bg-white/10 backdrop-blur px-2.5 py-1 text-[11.5px] font-semibold text-emerald-200 border border-white/10">
+                <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a7 7 0 0 0-7 7c0 5 7 13 7 13s7-8 7-13a7 7 0 0 0-7-7Zm0 9.5a2.5 2.5 0 1 1 0-5 2.5 2.5 0 0 1 0 5Z"/></svg>
+                Sriperumbudur · Oragadam · Hosur
+              </span>
+              <h3 class="mt-3 text-2xl font-extrabold">Auto &amp; Ancillary Manufacturing</h3>
+              <p class="mt-2 text-[14px] text-slate-300 max-w-md">Tier-1 and Tier-2 suppliers, forging, machining, paint shops and heat treatment: compressed air, induction furnaces and process cooling.</p>
+              <div class="mt-4 flex flex-wrap gap-2 text-[11.5px] font-semibold">
+                <span class="rounded-full bg-emerald-600/30 border border-emerald-500/40 px-2.5 py-1">OEM supplier ESG</span>
+                <span class="rounded-full bg-emerald-600/30 border border-emerald-500/40 px-2.5 py-1">CBAM for steel &amp; aluminium</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- Chemical & Pharma -->
+          <article class="reveal group relative overflow-hidden rounded-2xl bg-navy-900 text-white min-h-[300px] flex flex-col justify-end p-7">
+            <svg class="absolute inset-0 w-full h-full opacity-90 group-hover:scale-105 transition-transform duration-700" viewBox="0 0 600 340" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+              <defs><linearGradient id="g3" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#334155"/><stop offset="1" stop-color="#0F172A"/></linearGradient></defs>
+              <rect width="600" height="340" fill="url(#g3)"/>
+              <g fill="none" stroke="#10B981" stroke-opacity=".3" stroke-width="2">
+                <rect x="380" y="70" width="60" height="140" rx="30"/><rect x="460" y="40" width="70" height="170" rx="35"/>
+                <path d="M410 70V40h85M440 140h20M300 210h300"/>
+                <path d="M330 210v-50h40v50"/>
+              </g>
+              <g fill="#06B6D4" fill-opacity=".25"><circle cx="495" cy="150" r="5"/><circle cx="505" cy="125" r="4"/><circle cx="488" cy="105" r="3"/></g>
+            </svg>
+            <div class="absolute inset-0 bg-gradient-to-t from-navy-950 via-navy-950/70 to-transparent" aria-hidden="true"></div>
+            <div class="relative">
+              <span class="inline-flex items-center gap-1.5 rounded-md bg-white/10 backdrop-blur px-2.5 py-1 text-[11.5px] font-semibold text-emerald-200 border border-white/10">
+                <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a7 7 0 0 0-7 7c0 5 7 13 7 13s7-8 7-13a7 7 0 0 0-7-7Zm0 9.5a2.5 2.5 0 1 1 0-5 2.5 2.5 0 0 1 0 5Z"/></svg>
+                Cuddalore SIPCOT · Gummidipoondi · Ranipet
+              </span>
+              <h3 class="mt-3 text-2xl font-extrabold">Chemical &amp; Pharma</h3>
+              <p class="mt-2 text-[14px] text-slate-300 max-w-md">API, bulk drug and specialty chemical plants: boilers, chillers, vacuum systems, solvent recovery and hazardous effluent streams.</p>
+              <div class="mt-4 flex flex-wrap gap-2 text-[11.5px] font-semibold">
+                <span class="rounded-full bg-emerald-600/30 border border-emerald-500/40 px-2.5 py-1">Steam &amp; boiler efficiency</span>
+                <span class="rounded-full bg-teal-600/30 border border-teal-500/40 px-2.5 py-1">TNPCB consent renewals</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- Commercial & Hospitals -->
+          <article class="reveal group relative overflow-hidden rounded-2xl bg-navy-900 text-white min-h-[300px] flex flex-col justify-end p-7" style="transition-delay:.08s">
+            <svg class="absolute inset-0 w-full h-full opacity-90 group-hover:scale-105 transition-transform duration-700" viewBox="0 0 600 340" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+              <defs><linearGradient id="g4" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#155E75"/><stop offset="1" stop-color="#0F172A"/></linearGradient></defs>
+              <rect width="600" height="340" fill="url(#g4)"/>
+              <g fill="#0F172A" fill-opacity=".55"><rect x="340" y="80" width="90" height="260"/><rect x="440" y="30" width="110" height="310"/></g>
+              <g fill="#67E8F9" fill-opacity=".25">
+                <rect x="352" y="100" width="16" height="12"/><rect x="378" y="100" width="16" height="12"/><rect x="404" y="100" width="16" height="12"/>
+                <rect x="352" y="130" width="16" height="12"/><rect x="378" y="130" width="16" height="12"/><rect x="404" y="130" width="16" height="12"/>
+                <rect x="352" y="160" width="16" height="12"/><rect x="378" y="160" width="16" height="12"/><rect x="404" y="160" width="16" height="12"/>
+                <rect x="455" y="50" width="20" height="14"/><rect x="485" y="50" width="20" height="14"/><rect x="515" y="50" width="20" height="14"/>
+                <rect x="455" y="80" width="20" height="14"/><rect x="485" y="80" width="20" height="14"/><rect x="515" y="80" width="20" height="14"/>
+                <rect x="455" y="110" width="20" height="14"/><rect x="485" y="110" width="20" height="14"/><rect x="515" y="110" width="20" height="14"/>
+              </g>
+              <path d="M488 160h14v14h14v14h-14v14h-14v-14h-14v-14h14z" fill="#10B981" fill-opacity=".45"/>
+            </svg>
+            <div class="absolute inset-0 bg-gradient-to-t from-navy-950 via-navy-950/70 to-transparent" aria-hidden="true"></div>
+            <div class="relative">
+              <span class="inline-flex items-center gap-1.5 rounded-md bg-white/10 backdrop-blur px-2.5 py-1 text-[11.5px] font-semibold text-cyan-200 border border-white/10">
+                <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a7 7 0 0 0-7 7c0 5 7 13 7 13s7-8 7-13a7 7 0 0 0-7-7Zm0 9.5a2.5 2.5 0 1 1 0-5 2.5 2.5 0 0 1 0 5Z"/></svg>
+                Chennai · Coimbatore · Madurai · Trichy
+              </span>
+              <h3 class="mt-3 text-2xl font-extrabold">Commercial Complexes &amp; Hospitals</h3>
+              <p class="mt-2 text-[14px] text-slate-300 max-w-md">IT parks, malls, hotels and multi-speciality hospitals: chiller plants, AHUs, lifts, DG sets, STPs and 24×7 critical loads.</p>
+              <div class="mt-4 flex flex-wrap gap-2 text-[11.5px] font-semibold">
+                <span class="rounded-full bg-teal-600/30 border border-teal-500/40 px-2.5 py-1">ECBC &amp; IGBC / GRIHA support</span>
+                <span class="rounded-full bg-emerald-600/30 border border-emerald-500/40 px-2.5 py-1">Chiller plant kW/TR</span>
+              </div>
+            </div>
+          </article>
+        </div>
+
+        <!-- Also serving strip -->
+        <div class="mt-6 reveal rounded-2xl border border-slate-200 bg-white p-5 sm:p-6 flex flex-col md:flex-row md:items-center gap-4 shadow-card">
+          <p class="text-sm font-bold text-navy-900 shrink-0">Also serving:</p>
+          <div class="flex flex-wrap gap-2">
+            <span class="rounded-lg bg-slate-100 px-3 py-1.5 text-[13px] font-semibold text-slate-700">Foundries (Coimbatore)</span>
+            <span class="rounded-lg bg-slate-100 px-3 py-1.5 text-[13px] font-semibold text-slate-700">Pump &amp; Motor Makers</span>
+            <span class="rounded-lg bg-slate-100 px-3 py-1.5 text-[13px] font-semibold text-slate-700">Sago &amp; Food Processing (Salem)</span>
+            <span class="rounded-lg bg-slate-100 px-3 py-1.5 text-[13px] font-semibold text-slate-700">Sugar &amp; Distilleries</span>
+            <span class="rounded-lg bg-slate-100 px-3 py-1.5 text-[13px] font-semibold text-slate-700">Rice Mills &amp; Cold Storage</span>
+            <span class="rounded-lg bg-slate-100 px-3 py-1.5 text-[13px] font-semibold text-slate-700">Cement &amp; Ceramics</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ WHY EUWATT ============ -->
+    <section class="py-20 md:py-24 bg-white">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 grid lg:grid-cols-3 gap-10">
+        <div class="reveal">
+          <p class="text-xs font-bold tracking-[0.2em] uppercase text-emerald-600">Why EuWatt</p>
+          <h2 class="mt-3 text-3xl font-extrabold tracking-tight text-navy-900">Engineering credibility your auditors, bankers and buyers will accept.</h2>
+        </div>
+        <div class="lg:col-span-2 grid sm:grid-cols-2 gap-x-8 gap-y-8">
+          <div class="reveal flex gap-4">
+            <span class="grid place-items-center w-11 h-11 shrink-0 rounded-xl bg-emerald-50 text-emerald-600 border border-emerald-100"><svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12h6M9 16h6M9 8h2M6 3h9l4 4v13a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1Z"/></svg></span>
+            <div><h3 class="font-bold text-navy-900">Investment-grade reports</h3><p class="mt-1.5 text-[14px] text-slate-600 leading-relaxed">Each recommendation carries measured baseline, capex, savings and payback, suitable for SIDBI and bank green-loan applications.</p></div>
+          </div>
+          <div class="reveal flex gap-4">
+            <span class="grid place-items-center w-11 h-11 shrink-0 rounded-xl bg-cyan-50 text-teal-600 border border-cyan-100"><svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3 4 6v6c0 4.5 3.4 8.3 8 9 4.6-.7 8-4.5 8-9V6l-8-3Z"/></svg></span>
+            <div><h3 class="font-bold text-navy-900">Vendor-neutral advice</h3><p class="mt-1.5 text-[14px] text-slate-600 leading-relaxed">We do not sell equipment. Our only incentive is that the savings we report are real and repeatable.</p></div>
+          </div>
+          <div class="reveal flex gap-4">
+            <span class="grid place-items-center w-11 h-11 shrink-0 rounded-xl bg-emerald-50 text-emerald-600 border border-emerald-100"><svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 2m6-2a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/></svg></span>
+            <div><h3 class="font-bold text-navy-900">Zero production disruption</h3><p class="mt-1.5 text-[14px] text-slate-600 leading-relaxed">Clamp-on and non-invasive instruments mean we log data while your lines keep running.</p></div>
+          </div>
+          <div class="reveal flex gap-4">
+            <span class="grid place-items-center w-11 h-11 shrink-0 rounded-xl bg-slate-100 text-navy-900 border border-slate-200"><svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M17 20h5v-2a4 4 0 0 0-5-3.87M9 20H2v-2a4 4 0 0 1 5-3.87m6-4.13a4 4 0 1 1-8 0 4 4 0 0 1 8 0Zm8 0a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"/></svg></span>
+            <div><h3 class="font-bold text-navy-900">Local, Tamil-speaking engineers</h3><p class="mt-1.5 text-[14px] text-slate-600 leading-relaxed">We work directly with your shop-floor electricians and ETP operators, in Tamil or English.</p></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 7. RFQ FORM + CONTACT ============ -->
+    <section id="rfq" class="relative py-20 md:py-28 bg-navy-900 text-white overflow-hidden">
+      <div class="absolute inset-0 grid-bg" aria-hidden="true"></div>
+      <div class="absolute top-0 right-0 w-[500px] h-[500px] rounded-full bg-emerald-500/10 blur-3xl" aria-hidden="true"></div>
+      <div class="relative max-w-7xl mx-auto px-4 sm:px-6 grid lg:grid-cols-12 gap-10">
+
+        <!-- Contact info -->
+        <div id="contact" class="lg:col-span-5 reveal">
+          <p class="text-xs font-bold tracking-[0.2em] uppercase text-emerald-400">Request for Quotation</p>
+          <h2 class="mt-3 text-3xl sm:text-4xl font-extrabold tracking-tight">Book a site walkthrough for your facility.</h2>
+          <p class="mt-4 text-slate-300 text-base sm:text-lg leading-relaxed">Share a few details and a senior engineer will respond within one working day with a scoped proposal and fixed audit fee.</p>
+
+          <div class="mt-10 space-y-4">
+            <a href="tel:+91XXXXXXXXXX" class="flex items-center gap-4 rounded-xl border border-white/10 bg-white/[0.04] hover:bg-white/[0.07] p-4 transition-colors">
+              <span class="grid place-items-center w-11 h-11 shrink-0 rounded-lg bg-emerald-500/15 text-emerald-400"><svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 0 1 2-2h3.3a1 1 0 0 1 .95.68l1.5 4.5a1 1 0 0 1-.5 1.2l-2.26 1.13a11 11 0 0 0 5.5 5.5l1.13-2.26a1 1 0 0 1 1.2-.5l4.5 1.5a1 1 0 0 1 .68.95V19a2 2 0 0 1-2 2h-1C9.7 21 3 14.3 3 6V5Z"/></svg></span>
+              <span><span class="block text-[12px] font-semibold text-slate-400">Phone</span><span class="block font-bold">+91 XXXXX XXXXX</span></span>
+            </a>
+            <a href="#" data-wa="contact" class="flex items-center gap-4 rounded-xl border border-white/10 bg-white/[0.04] hover:bg-white/[0.07] p-4 transition-colors">
+              <span class="grid place-items-center w-11 h-11 shrink-0 rounded-lg bg-[#25D366]/15 text-[#25D366]"><svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.65.07-.3-.15-1.26-.46-2.4-1.48-.89-.79-1.49-1.77-1.66-2.07-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.62-.92-2.22-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.48s1.07 2.88 1.21 3.08c.15.2 2.1 3.2 5.08 4.49.71.31 1.26.49 1.69.63.71.23 1.36.19 1.87.12.57-.09 1.76-.72 2.01-1.41.25-.7.25-1.29.17-1.41-.07-.13-.27-.2-.57-.35zM12.04 21.5h-.01a9.43 9.43 0 0 1-4.8-1.31l-.35-.2-3.57.93.95-3.48-.22-.36a9.4 9.4 0 0 1-1.44-5.01c0-5.2 4.24-9.43 9.45-9.43a9.4 9.4 0 0 1 9.43 9.44c0 5.2-4.24 9.43-9.44 9.43zm8.03-17.46A11.3 11.3 0 0 0 12.04.72C5.78.72.68 5.82.68 12.08c0 2 .52 3.95 1.52 5.67L.58 23.64l6.03-1.58a11.3 11.3 0 0 0 5.43 1.38h.01c6.26 0 11.36-5.1 11.36-11.36 0-3.03-1.18-5.89-3.34-8.04z"/></svg></span>
+              <span><span class="block text-[12px] font-semibold text-slate-400">WhatsApp</span><span class="block font-bold">Chat with an audit engineer</span></span>
+            </a>
+            <a href="mailto:audits@euwatt.in" class="flex items-center gap-4 rounded-xl border border-white/10 bg-white/[0.04] hover:bg-white/[0.07] p-4 transition-colors">
+              <span class="grid place-items-center w-11 h-11 shrink-0 rounded-lg bg-teal-500/15 text-teal-500"><svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M3 7l9 6 9-6M5 5h14a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2Z"/></svg></span>
+              <span><span class="block text-[12px] font-semibold text-slate-400">Email</span><span class="block font-bold">audits@euwatt.in</span></span>
+            </a>
+            <div class="flex items-start gap-4 rounded-xl border border-white/10 bg-white/[0.04] p-4">
+              <span class="grid place-items-center w-11 h-11 shrink-0 rounded-lg bg-emerald-500/15 text-emerald-400"><svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M12 21s-7-7.5-7-12a7 7 0 0 1 14 0c0 4.5-7 12-7 12Z"/><circle cx="12" cy="9" r="2.5"/></svg></span>
+              <span>
+                <span class="block text-[12px] font-semibold text-slate-400">Head Office</span>
+                <span class="block font-bold">Perambalur, Tamil Nadu</span>
+                <span class="block mt-1 text-[13px] text-slate-400 leading-relaxed">Tamil Nadu Operations: field teams covering Chennai, Coimbatore, Tirupur, Erode, Hosur, Salem, Trichy &amp; Madurai.</span>
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Form -->
+        <div class="lg:col-span-7 reveal">
+          <form id="rfqForm" class="rounded-2xl bg-white text-navy-900 shadow-2xl p-6 sm:p-9" novalidate>
+            <div class="flex items-start justify-between gap-4">
+              <div>
+                <h3 class="text-xl font-extrabold">Audit RFQ</h3>
+                <p class="mt-1 text-[13.5px] text-slate-500">All fields marked * are required. Your data stays confidential.</p>
+              </div>
+              <span class="hidden sm:inline-flex items-center gap-1.5 rounded-md bg-emerald-50 border border-emerald-100 px-2.5 py-1 text-[11.5px] font-bold text-emerald-700">
+                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 2"/><circle cx="12" cy="12" r="9"/></svg>
+                Reply in 24 hrs
+              </span>
+            </div>
+
+            <div class="mt-7 grid sm:grid-cols-2 gap-5">
+              <div>
+                <label for="fName" class="block text-[13px] font-bold text-navy-800">Full Name *</label>
+                <input id="fName" name="name" type="text" autocomplete="name" required placeholder="e.g. R. Senthil Kumar" class="mt-1.5 w-full rounded-lg border border-slate-300 bg-white px-4 py-3 text-[15px] placeholder:text-slate-400 focus:border-emerald-600 focus:ring-4 focus:ring-emerald-500/15 outline-none transition" />
+                <p class="err hidden mt-1 text-[12px] font-semibold text-red-600">Please enter your name.</p>
+              </div>
+              <div>
+                <label for="fCompany" class="block text-[13px] font-bold text-navy-800">Company / Factory Name *</label>
+                <input id="fCompany" name="company" type="text" autocomplete="organization" required placeholder="e.g. Sri Murugan Textiles Pvt Ltd" class="mt-1.5 w-full rounded-lg border border-slate-300 bg-white px-4 py-3 text-[15px] placeholder:text-slate-400 focus:border-emerald-600 focus:ring-4 focus:ring-emerald-500/15 outline-none transition" />
+                <p class="err hidden mt-1 text-[12px] font-semibold text-red-600">Please enter your company name.</p>
+              </div>
+              <div>
+                <label for="fLocation" class="block text-[13px] font-bold text-navy-800">Facility Location *</label>
+                <select id="fLocation" name="location" required class="mt-1.5 w-full rounded-lg border border-slate-300 bg-white px-4 py-3 text-[15px] focus:border-emerald-600 focus:ring-4 focus:ring-emerald-500/15 outline-none transition">
+                  <option value="">Select city / cluster</option>
+                  <option>Chennai</option>
+                  <option>Sriperumbudur / Oragadam</option>
+                  <option>Coimbatore</option>
+                  <option>Tirupur</option>
+                  <option>Erode</option>
+                  <option>Hosur / Krishnagiri</option>
+                  <option>Salem / Namakkal</option>
+                  <option>Trichy / Perambalur</option>
+                  <option>Madurai</option>
+                  <option>Other – Tamil Nadu</option>
+                  <option>Outside Tamil Nadu</option>
+                </select>
+                <p class="err hidden mt-1 text-[12px] font-semibold text-red-600">Please choose a location.</p>
+              </div>
+              <div>
+                <label for="fPhone" class="block text-[13px] font-bold text-navy-800">Mobile Number *</label>
+                <input id="fPhone" name="phone" type="tel" inputmode="tel" autocomplete="tel" required placeholder="+91 98XXX XXXXX" class="mt-1.5 w-full rounded-lg border border-slate-300 bg-white px-4 py-3 text-[15px] placeholder:text-slate-400 focus:border-emerald-600 focus:ring-4 focus:ring-emerald-500/15 outline-none transition" />
+                <p class="err hidden mt-1 text-[12px] font-semibold text-red-600">Please enter a valid 10-digit mobile number.</p>
+              </div>
+              <div class="sm:col-span-2">
+                <label for="fLoad" class="block text-[13px] font-bold text-navy-800">Monthly Power Bill / Connected Load *</label>
+                <input id="fLoad" name="load" type="text" required placeholder="e.g. ₹12 Lakhs/month or 850 kVA HT" class="mt-1.5 w-full rounded-lg border border-slate-300 bg-white px-4 py-3 text-[15px] placeholder:text-slate-400 focus:border-emerald-600 focus:ring-4 focus:ring-emerald-500/15 outline-none transition" />
+                <p class="err hidden mt-1 text-[12px] font-semibold text-red-600">Please share your bill or connected load.</p>
+              </div>
+            </div>
+
+            <fieldset class="mt-6">
+              <legend class="text-[13px] font-bold text-navy-800">Services Needed *</legend>
+              <div class="mt-2.5 grid sm:grid-cols-2 gap-2.5">
+                <label class="svc-check cursor-pointer">
+                  <input type="checkbox" name="services" value="Industrial Energy Audit" class="sr-only" />
+                  <span class="flex items-center gap-3 rounded-lg border border-slate-300 px-4 py-3 text-[14px] font-semibold text-slate-700 transition-colors hover:border-slate-400">
+                    <span class="tick grid place-items-center w-5 h-5 shrink-0 rounded border-2 border-slate-300 transition-colors"><svg class="w-3 h-3 text-white opacity-0" fill="none" stroke="currentColor" stroke-width="3.5" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="m5 12 4 4 10-10"/></svg></span>
+                    Industrial Energy Audit
+                  </span>
+                </label>
+                <label class="svc-check cursor-pointer">
+                  <input type="checkbox" name="services" value="Water Balance & Audit" class="sr-only" />
+                  <span class="flex items-center gap-3 rounded-lg border border-slate-300 px-4 py-3 text-[14px] font-semibold text-slate-700 transition-colors hover:border-slate-400">
+                    <span class="tick grid place-items-center w-5 h-5 shrink-0 rounded border-2 border-slate-300 transition-colors"><svg class="w-3 h-3 text-white opacity-0" fill="none" stroke="currentColor" stroke-width="3.5" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="m5 12 4 4 10-10"/></svg></span>
+                    Water Balance &amp; Audit
+                  </span>
+                </label>
+                <label class="svc-check cursor-pointer">
+                  <input type="checkbox" name="services" value="GHG Verification & Carbon Accounting" class="sr-only" />
+                  <span class="flex items-center gap-3 rounded-lg border border-slate-300 px-4 py-3 text-[14px] font-semibold text-slate-700 transition-colors hover:border-slate-400">
+                    <span class="tick grid place-items-center w-5 h-5 shrink-0 rounded border-2 border-slate-300 transition-colors"><svg class="w-3 h-3 text-white opacity-0" fill="none" stroke="currentColor" stroke-width="3.5" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="m5 12 4 4 10-10"/></svg></span>
+                    GHG / Carbon Accounting
+                  </span>
+                </label>
+                <label class="svc-check cursor-pointer">
+                  <input type="checkbox" name="services" value="EU-CBAM Readiness" class="sr-only" />
+                  <span class="flex items-center gap-3 rounded-lg border border-slate-300 px-4 py-3 text-[14px] font-semibold text-slate-700 transition-colors hover:border-slate-400">
+                    <span class="tick grid place-items-center w-5 h-5 shrink-0 rounded border-2 border-slate-300 transition-colors"><svg class="w-3 h-3 text-white opacity-0" fill="none" stroke="currentColor" stroke-width="3.5" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="m5 12 4 4 10-10"/></svg></span>
+                    EU-CBAM Readiness
+                  </span>
+                </label>
+                <label class="svc-check cursor-pointer">
+                  <input type="checkbox" name="services" value="Thermal Imaging Survey" class="sr-only" />
+                  <span class="flex items-center gap-3 rounded-lg border border-slate-300 px-4 py-3 text-[14px] font-semibold text-slate-700 transition-colors hover:border-slate-400">
+                    <span class="tick grid place-items-center w-5 h-5 shrink-0 rounded border-2 border-slate-300 transition-colors"><svg class="w-3 h-3 text-white opacity-0" fill="none" stroke="currentColor" stroke-width="3.5" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="m5 12 4 4 10-10"/></svg></span>
+                    Thermal Imaging Survey
+                  </span>
+                </label>
+                <label class="svc-check cursor-pointer">
+                  <input type="checkbox" name="services" value="TNPCB Compliance Support" class="sr-only" />
+                  <span class="flex items-center gap-3 rounded-lg border border-slate-300 px-4 py-3 text-[14px] font-semibold text-slate-700 transition-colors hover:border-slate-400">
+                    <span class="tick grid place-items-center w-5 h-5 shrink-0 rounded border-2 border-slate-300 transition-colors"><svg class="w-3 h-3 text-white opacity-0" fill="none" stroke="currentColor" stroke-width="3.5" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="m5 12 4 4 10-10"/></svg></span>
+                    TNPCB Compliance Support
+                  </span>
+                </label>
+              </div>
+              <p id="svcErr" class="hidden mt-1.5 text-[12px] font-semibold text-red-600">Please select at least one service.</p>
+            </fieldset>
+
+            <div class="mt-6">
+              <label for="fNotes" class="block text-[13px] font-bold text-navy-800">Anything else we should know? <span class="font-medium text-slate-400">(optional)</span></label>
+              <textarea id="fNotes" name="notes" rows="3" placeholder="e.g. High PF penalty last quarter, TNPCB consent renewal due in March, EU buyer asking for product carbon data…" class="mt-1.5 w-full rounded-lg border border-slate-300 bg-white px-4 py-3 text-[15px] placeholder:text-slate-400 focus:border-emerald-600 focus:ring-4 focus:ring-emerald-500/15 outline-none transition resize-y"></textarea>
+            </div>
+
+            <button type="submit" class="mt-7 w-full inline-flex justify-center items-center gap-2 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-extrabold text-[15.5px] py-4 shadow-[0_12px_30px_-12px_rgba(5,150,105,.9)] transition-colors">
+              Submit Audit RFQ
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14M13 6l6 6-6 6"/></svg>
+            </button>
+            <p class="mt-3 text-center text-[12px] text-slate-500">Your RFQ is sent to our audit desk via WhatsApp for the fastest response.</p>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="bg-navy-950 text-slate-400">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 py-14 grid sm:grid-cols-2 lg:grid-cols-4 gap-10">
+      <div class="lg:col-span-1">
+        <div class="flex items-center gap-2.5">
+          <span class="grid place-items-center w-10 h-10 rounded-xl bg-navy-800">
+            <svg viewBox="0 0 32 32" class="w-6 h-6" aria-hidden="true"><path d="M8 24c0-8 6-14 16-15-1 10-7 16-15 16" fill="none" stroke="#0891B2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M18 5 10 17h6l-2 10 9-13h-6z" fill="#10B981"/></svg>
+          </span>
+          <span class="text-lg font-extrabold text-white">Eu<span class="text-emerald-500">Watt</span> <span class="font-semibold text-slate-400">Technologies</span></span>
+        </div>
+        <p class="mt-4 text-[13.5px] leading-relaxed">Industrial energy, water and carbon engineering for Tamil Nadu’s manufacturers and commercial facilities.</p>
+      </div>
+      <div>
+        <p class="text-sm font-bold text-white">Services</p>
+        <ul class="mt-4 space-y-2.5 text-[13.5px]">
+          <li><a href="#services" class="hover:text-white transition-colors">Industrial Energy Audits</a></li>
+          <li><a href="#services" class="hover:text-white transition-colors">Water Balance &amp; Audits</a></li>
+          <li><a href="#services" class="hover:text-white transition-colors">GHG Verification</a></li>
+          <li><a href="#services" class="hover:text-white transition-colors">EU-CBAM Readiness</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="text-sm font-bold text-white">Company</p>
+        <ul class="mt-4 space-y-2.5 text-[13.5px]">
+          <li><a href="#methodology" class="hover:text-white transition-colors">Audit Methodology</a></li>
+          <li><a href="#industries" class="hover:text-white transition-colors">Industries Served</a></li>
+          <li><a href="#calculator" class="hover:text-white transition-colors">Savings Calculator</a></li>
+          <li><a href="#rfq" class="hover:text-white transition-colors">Request an RFQ</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="text-sm font-bold text-white">Contact</p>
+        <ul class="mt-4 space-y-2.5 text-[13.5px]">
+          <li><a href="tel:+91XXXXXXXXXX" class="hover:text-white transition-colors">+91 XXXXX XXXXX</a></li>
+          <li><a href="mailto:audits@euwatt.in" class="hover:text-white transition-colors">audits@euwatt.in</a></li>
+          <li>Perambalur, Tamil Nadu, India</li>
+        </ul>
+      </div>
+    </div>
+    <div class="border-t border-white/5">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 py-6 flex flex-col sm:flex-row gap-2 justify-between text-[12.5px]">
+        <p>© <span id="year">2026</span> EuWatt Technologies. All rights reserved.</p>
+        <p>Energy Audits · Water Audits · GHG Verification · Tamil Nadu</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ============ 8. FLOATING WHATSAPP ============ -->
+  <a href="#" data-wa="float" class="wa-pulse fixed bottom-5 right-5 sm:bottom-7 sm:right-7 z-50 isolate grid place-items-center w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-[#25D366] text-white shadow-[0_12px_30px_-8px_rgba(37,211,102,.7)] hover:scale-105 transition-transform" aria-label="Chat with EuWatt on WhatsApp">
+    <svg class="w-7 h-7 sm:w-8 sm:h-8" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.65.07-.3-.15-1.26-.46-2.4-1.48-.89-.79-1.49-1.77-1.66-2.07-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.62-.92-2.22-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.48s1.07 2.88 1.21 3.08c.15.2 2.1 3.2 5.08 4.49.71.31 1.26.49 1.69.63.71.23 1.36.19 1.87.12.57-.09 1.76-.72 2.01-1.41.25-.7.25-1.29.17-1.41-.07-.13-.27-.2-.57-.35zM12.04 21.5h-.01a9.43 9.43 0 0 1-4.8-1.31l-.35-.2-3.57.93.95-3.48-.22-.36a9.4 9.4 0 0 1-1.44-5.01c0-5.2 4.24-9.43 9.45-9.43a9.4 9.4 0 0 1 9.43 9.44c0 5.2-4.24 9.43-9.44 9.43zm8.03-17.46A11.3 11.3 0 0 0 12.04.72C5.78.72.68 5.82.68 12.08c0 2 .52 3.95 1.52 5.67L.58 23.64l6.03-1.58a11.3 11.3 0 0 0 5.43 1.38h.01c6.26 0 11.36-5.1 11.36-11.36 0-3.03-1.18-5.89-3.34-8.04z"/></svg>
+  </a>
+
+  <!-- ============ SUBMIT MODAL ============ -->
+  <div id="rfqModal" class="fixed inset-0 z-[60] hidden" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <div class="absolute inset-0 bg-navy-950/70 backdrop-blur-sm" data-close></div>
+    <div class="relative min-h-full flex items-center justify-center p-4">
+      <div class="relative w-full max-w-lg rounded-2xl bg-white shadow-2xl overflow-hidden">
+        <div class="h-1.5 bg-gradient-to-r from-emerald-600 via-emerald-500 to-teal-600"></div>
+        <button type="button" class="absolute top-4 right-4 grid place-items-center w-9 h-9 rounded-lg text-slate-500 hover:bg-slate-100" aria-label="Close" data-close>
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" d="M6 6l12 12M18 6 6 18"/></svg>
+        </button>
+        <div class="p-6 sm:p-8">
+          <span class="grid place-items-center w-14 h-14 rounded-full bg-emerald-50 text-emerald-600 border border-emerald-100">
+            <svg class="w-7 h-7" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="m5 12 4 4 10-10"/></svg>
+          </span>
+          <h3 id="modalTitle" class="mt-5 text-xl font-extrabold text-navy-900">Your RFQ is ready to send</h3>
+          <p class="mt-2 text-[14px] text-slate-600">Review the summary below, then send it to our audit desk on WhatsApp. A senior engineer will reply within one working day.</p>
+          <dl id="modalSummary" class="mt-5 rounded-xl border border-slate-200 bg-slate-50 divide-y divide-slate-200 text-[13.5px]"></dl>
+          <div class="mt-6 flex flex-col sm:flex-row gap-3">
+            <a id="modalSend" href="#" target="_blank" rel="noopener" class="flex-1 inline-flex justify-center items-center gap-2 rounded-xl bg-[#25D366] hover:bg-[#1fb857] text-navy-950 font-extrabold py-3.5 transition-colors">
+              <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.65.07-.3-.15-1.26-.46-2.4-1.48-.89-.79-1.49-1.77-1.66-2.07-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.62-.92-2.22-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.48s1.07 2.88 1.21 3.08c.15.2 2.1 3.2 5.08 4.49.71.31 1.26.49 1.69.63.71.23 1.36.19 1.87.12.57-.09 1.76-.72 2.01-1.41.25-.7.25-1.29.17-1.41-.07-.13-.27-.2-.57-.35zM12.04 21.5h-.01a9.43 9.43 0 0 1-4.8-1.31l-.35-.2-3.57.93.95-3.48-.22-.36a9.4 9.4 0 0 1-1.44-5.01c0-5.2 4.24-9.43 9.45-9.43a9.4 9.4 0 0 1 9.43 9.44c0 5.2-4.24 9.43-9.44 9.43zm8.03-17.46A11.3 11.3 0 0 0 12.04.72C5.78.72.68 5.82.68 12.08c0 2 .52 3.95 1.52 5.67L.58 23.64l6.03-1.58a11.3 11.3 0 0 0 5.43 1.38h.01c6.26 0 11.36-5.1 11.36-11.36 0-3.03-1.18-5.89-3.34-8.04z"/></svg>
+              Send via WhatsApp
+            </a>
+            <button type="button" data-close class="sm:w-32 rounded-xl border border-slate-300 font-bold text-slate-700 py-3.5 hover:bg-slate-50">Edit</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      'use strict';
+
+      /* ---------- CONFIG: replace with the real WhatsApp number (country code + number, digits only) ---------- */
+      var WA_NUMBER = '91XXXXXXXXXX';
+
+      function waLink(text) {
+        return 'https://wa.me/' + WA_NUMBER + '?text=' + encodeURIComponent(text);
+      }
+
+      /* ---------- Formatting helpers (Indian numbering) ---------- */
+      function formatINR(value) {
+        if (value >= 1e7) return '₹' + (value / 1e7).toFixed(2).replace(/\.?0+$/, '') + ' Cr';
+        if (value >= 1e5) return '₹' + (value / 1e5).toFixed(1).replace(/\.0$/, '') + ' Lakhs';
+        return '₹' + Math.round(value).toLocaleString('en-IN');
+      }
+      function formatLakhsShort(value) {
+        if (value >= 1e7) return '₹' + (value / 1e7).toFixed(2).replace(/\.?0+$/, '') + ' Cr';
+        return '₹' + (value / 1e5).toFixed(1).replace(/\.0$/, '') + ' L';
+      }
+
+      /* ---------- Year ---------- */
+      document.getElementById('year').textContent = new Date().getFullYear();
+
+      /* ---------- Header shadow on scroll ---------- */
+      var header = document.getElementById('siteHeader');
+      function onScroll() { header.classList.toggle('shadow-card', window.scrollY > 8); }
+      window.addEventListener('scroll', onScroll, { passive: true });
+      onScroll();
+
+      /* ---------- Mobile menu ---------- */
+      var menuBtn = document.getElementById('menuBtn');
+      var mobileMenu = document.getElementById('mobileMenu');
+      var iconOpen = document.getElementById('menuIconOpen');
+      var iconClose = document.getElementById('menuIconClose');
+      function setMenu(open) {
+        mobileMenu.classList.toggle('hidden', !open);
+        iconOpen.classList.toggle('hidden', open);
+        iconClose.classList.toggle('hidden', !open);
+        menuBtn.setAttribute('aria-expanded', String(open));
+        menuBtn.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+      }
+      menuBtn.addEventListener('click', function () { setMenu(mobileMenu.classList.contains('hidden')); });
+      document.querySelectorAll('.mobile-link').forEach(function (a) { a.addEventListener('click', function () { setMenu(false); }); });
+      window.addEventListener('resize', function () { if (window.innerWidth >= 1024) setMenu(false); });
+
+      /* ---------- Active nav link highlighting ---------- */
+      var navLinks = document.querySelectorAll('.nav-link');
+      var sectionIds = ['services', 'calculator', 'methodology', 'industries', 'rfq'];
+      if ('IntersectionObserver' in window) {
+        var navObserver = new IntersectionObserver(function (entries) {
+          entries.forEach(function (entry) {
+            if (!entry.isIntersecting) return;
+            var id = entry.target.id === 'rfq' ? 'contact' : entry.target.id;
+            navLinks.forEach(function (l) {
+              var active = l.getAttribute('href') === '#' + id;
+              l.classList.toggle('text-navy-900', active);
+              l.classList.toggle('bg-slate-100', active);
+            });
+          });
+        }, { rootMargin: '-45% 0px -50% 0px' });
+        sectionIds.forEach(function (id) { var el = document.getElementById(id); if (el) navObserver.observe(el); });
+      }
+
+      /* ---------- Reveal on scroll ---------- */
+      var reveals = document.querySelectorAll('.reveal');
+      if ('IntersectionObserver' in window) {
+        var revealObserver = new IntersectionObserver(function (entries) {
+          entries.forEach(function (entry) {
+            if (entry.isIntersecting) { entry.target.classList.add('is-visible'); revealObserver.unobserve(entry.target); }
+          });
+        }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+        reveals.forEach(function (el) { revealObserver.observe(el); });
+      } else {
+        reveals.forEach(function (el) { el.classList.add('is-visible'); });
+      }
+
+      /* ---------- Generic WhatsApp links ---------- */
+      var waMessages = {
+        hero: 'Hello EuWatt Technologies, I would like a consultation on reducing power and water costs at our facility in Tamil Nadu.',
+        contact: 'Hello EuWatt Technologies, I would like to speak with an audit engineer about our plant.',
+        float: 'Hello EuWatt Technologies, I have a question about your Energy / Water / GHG audit services.'
+      };
+      document.querySelectorAll('[data-wa]').forEach(function (el) {
+        el.setAttribute('href', waLink(waMessages[el.getAttribute('data-wa')] || waMessages.float));
+        el.setAttribute('target', '_blank');
+        el.setAttribute('rel', 'noopener');
+      });
+
+      /* ---------- Savings Estimator ---------- */
+      var INDUSTRIES = {
+        textile: {
+          label: 'Textile / Garments', min: 0.14, max: 0.22, payback: [8, 14], capexFactor: 0.95,
+          scope: 'Thermic fluid heater & boiler efficiency, compressed air leak survey, dyeing machine motor loading, ETP / ZLD energy intensity and power factor correction.'
+        },
+        auto: {
+          label: 'Auto Components', min: 0.12, max: 0.19, payback: [10, 16], capexFactor: 1.1,
+          scope: 'Compressed air system audit, induction furnace & heat treatment efficiency, CNC idle load profiling, paint shop HVAC and harmonic analysis.'
+        },
+        food: {
+          label: 'Food Processing', min: 0.12, max: 0.20, payback: [9, 15], capexFactor: 1.0,
+          scope: 'Refrigeration & cold room COP testing, steam distribution and condensate recovery, dryer efficiency, pump and blower VFD opportunities.'
+        },
+        foundry: {
+          label: 'Engineering / Foundry', min: 0.15, max: 0.22, payback: [7, 13], capexFactor: 0.9,
+          scope: 'Induction / cupola furnace melt-rate study, ladle & refractory thermography, sand plant motors, compressor leaks and maximum-demand control.'
+        },
+        commercial: {
+          label: 'Commercial Building', min: 0.10, max: 0.16, payback: [12, 20], capexFactor: 1.25,
+          scope: 'Chiller plant kW/TR assessment, AHU & cooling tower optimisation, lighting retrofit, DG set efficiency and BMS scheduling review.'
+        }
+      };
+
+      var slider = document.getElementById('billSlider');
+      var billOutput = document.getElementById('billOutput');
+      var savingsValue = document.getElementById('savingsValue');
+      var savingsRange = document.getElementById('savingsRange');
+      var pctLabel = document.getElementById('pctLabel');
+      var pctBar = document.getElementById('pctBar');
+      var paybackValue = document.getElementById('paybackValue');
+      var co2Value = document.getElementById('co2Value');
+      var capexValue = document.getElementById('capexValue');
+      var scopeText = document.getElementById('scopeText');
+      var calcWhatsApp = document.getElementById('calcWhatsApp');
+      var animFrame = null;
+      var currentSavings = 0;
+
+      function animateValue(from, to) {
+        if (animFrame) cancelAnimationFrame(animFrame);
+        var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        if (reduce) { savingsValue.textContent = formatINR(to); return; }
+        var start = null, dur = 450;
+        function step(ts) {
+          if (!start) start = ts;
+          var p = Math.min((ts - start) / dur, 1);
+          var eased = 1 - Math.pow(1 - p, 3);
+          savingsValue.textContent = formatINR(from + (to - from) * eased);
+          if (p < 1) animFrame = requestAnimationFrame(step);
+        }
+        animFrame = requestAnimationFrame(step);
+      }
+
+      function getIndustryKey() {
+        var checked = document.querySelector('input[name="industry"]:checked');
+        return checked ? checked.value : 'textile';
+      }
+
+      function calculate() {
+        var key = getIndustryKey();
+        var ind = INDUSTRIES[key];
+        var lakhs = parseFloat(slider.value);
+        var isMax = lakhs >= 50;
+        var monthly = lakhs * 1e5;
+        var annualBill = monthly * 12;
+
+        /* Larger plants usually have more recoverable losses: nudge toward the upper bound with bill size */
+        var sizeBias = Math.min(Math.max((lakhs - 1) / 49, 0), 1);
+        var pct = ind.min + (ind.max - ind.min) * (0.35 + 0.5 * sizeBias);
+        var savings = annualBill * pct;
+        var low = annualBill * ind.min;
+        var high = annualBill * ind.max;
+
+        /* Payback shortens slightly for bigger plants (scale economies on retrofits) */
+        var pbLow = Math.max(4, Math.round(ind.payback[0] - 2 * sizeBias));
+        var pbHigh = Math.max(pbLow + 3, Math.round(ind.payback[1] - 3 * sizeBias));
+        /* Indicative investment = savings x average payback (in years) */
+        var capex = savings * ((pbLow + pbHigh) / 2 / 12);
+
+        /* CO2: savings / ₹8 per kWh => kWh; × 0.71 kg/kWh => tonnes */
+        var kwhSaved = savings / 8;
+        var tco2 = kwhSaved * 0.71 / 1000;
+
+        billOutput.textContent = (isMax ? '₹50 Lakhs+' : '₹' + (lakhs % 1 === 0 ? lakhs : lakhs.toFixed(1)) + ' Lakhs');
+        slider.style.setProperty('--fill', ((lakhs - 1) / 49 * 100) + '%');
+        slider.setAttribute('aria-valuetext', billOutput.textContent + ' per month');
+
+        animateValue(currentSavings, savings);
+        currentSavings = savings;
+
+        savingsRange.textContent = 'Range: ' + formatLakhsShort(low) + ' – ' + formatLakhsShort(high) + ' per year';
+        var pctDisplay = (pct * 100).toFixed(1).replace(/\.0$/, '') + '%';
+        pctLabel.textContent = pctDisplay + ' of annual bill';
+        pctBar.style.width = (((pct - 0.10) / 0.12) * 100).toFixed(1) + '%';
+        paybackValue.textContent = pbLow + '–' + pbHigh + ' months';
+        co2Value.textContent = Math.round(tco2).toLocaleString('en-IN') + ' tCO₂e';
+        capexValue.textContent = formatLakhsShort(capex * 0.8) + ' – ' + formatLakhsShort(capex * 1.2);
+        scopeText.textContent = ind.scope;
+
+        var msg =
+          'Hello EuWatt Technologies, I used the Savings Estimator on your website and would like a tailored audit quote.\n\n' +
+          '• Industry: ' + ind.label + '\n' +
+          '• Monthly electricity bill: ' + billOutput.textContent + '\n' +
+          '• Estimated annual savings: ' + formatINR(savings) + ' (' + pctDisplay + ')\n' +
+          '• Indicative payback: ' + pbLow + '–' + pbHigh + ' months\n\n' +
+          'Please share the audit scope and fee for our facility.';
+        calcWhatsApp.setAttribute('href', waLink(msg));
+      }
+
+      slider.addEventListener('input', calculate);
+      document.querySelectorAll('input[name="industry"]').forEach(function (r) { r.addEventListener('change', calculate); });
+      calculate();
+
+      /* ---------- "Inquire for this Service" buttons -> preselect in RFQ ---------- */
+      document.querySelectorAll('[data-inquire]').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          var tmp = document.createElement('textarea');
+          tmp.innerHTML = btn.getAttribute('data-inquire');
+          var service = tmp.value;
+          document.querySelectorAll('input[name="services"]').forEach(function (cb) {
+            if (cb.value === service) cb.checked = true;
+          });
+          document.getElementById('svcErr').classList.add('hidden');
+          document.getElementById('rfq').scrollIntoView({ behavior: 'smooth', block: 'start' });
+          setTimeout(function () { document.getElementById('fName').focus({ preventScroll: true }); }, 700);
+        });
+      });
+
+      /* ---------- RFQ form ---------- */
+      var form = document.getElementById('rfqForm');
+      var modal = document.getElementById('rfqModal');
+      var modalSummary = document.getElementById('modalSummary');
+      var modalSend = document.getElementById('modalSend');
+      var lastFocus = null;
+
+      function fieldError(input, show) {
+        var err = input.parentElement.querySelector('.err');
+        input.classList.toggle('border-red-500', show);
+        input.classList.toggle('border-slate-300', !show);
+        if (err) err.classList.toggle('hidden', !show);
+        input.setAttribute('aria-invalid', show ? 'true' : 'false');
+      }
+
+      function validPhone(v) {
+        var digits = v.replace(/\D/g, '');
+        if (digits.length === 12 && digits.indexOf('91') === 0) digits = digits.slice(2);
+        if (digits.length === 11 && digits.charAt(0) === '0') digits = digits.slice(1);
+        return /^[6-9]\d{9}$/.test(digits);
+      }
+
+      ['fName', 'fCompany', 'fLocation', 'fPhone', 'fLoad'].forEach(function (id) {
+        var el = document.getElementById(id);
+        el.addEventListener('input', function () { if (el.getAttribute('aria-invalid') === 'true') fieldError(el, false); });
+        el.addEventListener('change', function () { if (el.getAttribute('aria-invalid') === 'true') fieldError(el, false); });
+      });
+      document.querySelectorAll('input[name="services"]').forEach(function (cb) {
+        cb.addEventListener('change', function () { document.getElementById('svcErr').classList.add('hidden'); });
+      });
+
+      function escapeHTML(s) {
+        return s.replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; });
+      }
+
+      function openModal() {
+        lastFocus = document.activeElement;
+        modal.classList.remove('hidden');
+        document.body.classList.add('modal-open');
+        setTimeout(function () { modalSend.focus(); }, 30);
+      }
+      function closeModal() {
+        modal.classList.add('hidden');
+        document.body.classList.remove('modal-open');
+        if (lastFocus) lastFocus.focus();
+      }
+      modal.querySelectorAll('[data-close]').forEach(function (el) { el.addEventListener('click', closeModal); });
+      document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && !modal.classList.contains('hidden')) closeModal(); });
+
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        var name = document.getElementById('fName');
+        var company = document.getElementById('fCompany');
+        var location = document.getElementById('fLocation');
+        var phone = document.getElementById('fPhone');
+        var load = document.getElementById('fLoad');
+        var notes = document.getElementById('fNotes');
+        var services = Array.prototype.slice.call(document.querySelectorAll('input[name="services"]:checked')).map(function (c) { return c.value; });
+
+        var firstInvalid = null;
+        [[name, name.value.trim().length >= 2], [company, company.value.trim().length >= 2], [location, !!location.value], [phone, validPhone(phone.value)], [load, load.value.trim().length >= 2]].forEach(function (pair) {
+          fieldError(pair[0], !pair[1]);
+          if (!pair[1] && !firstInvalid) firstInvalid = pair[0];
+        });
+        var svcErr = document.getElementById('svcErr');
+        svcErr.classList.toggle('hidden', services.length > 0);
+        if (services.length === 0 && !firstInvalid) firstInvalid = document.querySelector('input[name="services"]');
+        if (firstInvalid) { firstInvalid.focus(); return; }
+
+        var rows = [
+          ['Name', name.value.trim()],
+          ['Company', company.value.trim()],
+          ['Location', location.value],
+          ['Mobile', phone.value.trim()],
+          ['Power bill / Load', load.value.trim()],
+          ['Services', services.join(', ')]
+        ];
+        if (notes.value.trim()) rows.push(['Notes', notes.value.trim()]);
+
+        modalSummary.innerHTML = rows.map(function (r) {
+          return '<div class="flex gap-4 px-4 py-2.5"><dt class="w-32 shrink-0 font-semibold text-slate-500">' + escapeHTML(r[0]) + '</dt><dd class="font-semibold text-navy-900 break-words min-w-0">' + escapeHTML(r[1]) + '</dd></div>';
+        }).join('');
+
+        var msg = '*New Audit RFQ – EuWatt Technologies*\n\n' + rows.map(function (r) { return '• ' + r[0] + ': ' + r[1]; }).join('\n') + '\n\nPlease schedule a preliminary site walkthrough.';
+        modalSend.setAttribute('href', waLink(msg));
+        openModal();
+      });
+
+      modalSend.addEventListener('click', function () {
+        setTimeout(function () {
+          closeModal();
+          form.reset();
+        }, 400);
+      });
+    })();
+  </script>
+</body>
+</html>

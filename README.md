@@ -4,4 +4,4 @@ Single-page website for EuWatt Technologies, industrial energy, water and GHG au
 
 Live: https://mahsoom-codes-great.github.io/euwatt-technologies/
 
-Before going live, replace the WhatsApp/phone placeholders (`91XXXXXXXXXX`) in `index.html`.
+Before going live, contact: Saran, +91 93426 75483.
